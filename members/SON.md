@@ -1,0 +1,37 @@
+# 👤 Sơn – SV3: Fullstack Integrator & DB Tester
+
+**Phạm vi code:** `frontend/`, `scripts/seed/`
+
+## Phase 1
+### A. Dummy data MongoDB (1.0đ – barem mục 4)
+- [ ] Script seed: **50–100 đầu sách**, mỗi sách **5–10 chương** nội dung toàn văn lồng nhau (faker hoặc sách miễn phí Project Gutenberg)
+- [ ] Script chạy lặp được (xóa và nạp lại): `npm run seed`
+- [ ] Kiểm tra dữ liệu bằng **MongoDB Compass** (số lượng, cấu trúc lồng nhau)
+- [ ] Phối hợp Đạt nạp dữ liệu Redis (≥ 50 Hash, ZSET 50 sách)
+
+### B. Giao diện cơ bản
+- [ ] Trang danh sách sách, tìm kiếm/lọc, chi tiết sách
+- [ ] Trang quản trị: thêm/sửa/xóa sách, thêm chương (gọi API của Vũ)
+- [ ] Đăng ký / đăng nhập độc giả
+
+## Phase 2 (barem mục 3 & 4)
+### C. Giao diện E-Reader
+- [ ] Màn hình đọc có phân trang, nút chuyển chương/trang
+- [ ] Khi mở sách: gọi API tiến trình → **tự cuộn đến đúng trang đã lưu**
+- [ ] Tự động lưu tiến trình khi chuyển trang / đóng tab (`beforeunload`)
+- [ ] Mỗi lần mở chương → gọi API tăng lượt đọc
+- [ ] Widget **Top sách thịnh hành** (cập nhật định kỳ)
+
+### D. Kiểm thử & quan sát
+- [ ] Thành thạo **MongoDB Compass** + **Redis Insight** chạy song song
+- [ ] Đo hiệu năng cùng Đạt, tổng hợp bảng số liệu
+
+### E. Điều phối Demo (1.5đ)
+- [ ] Chuẩn bị môi trường, tài khoản, sách cố định cho demo (`docs/DEMO_SCRIPT.md`)
+- [ ] Chạy thử toàn bộ kịch bản ≥ 2 lần trước ngày bảo vệ
+- [ ] Chuẩn bị video demo dự phòng
+- [ ] Điều phối: Vũ đọc đến trang 30, Sơn mở lại, Đạt đọc liên tục, Sơn mở Insight
+
+## Definition of Done
+- `docker compose up -d` + `npm run seed` là đủ có dữ liệu để demo.
+- Kịch bản demo chạy trơn tru, không cần can thiệp thủ công.
