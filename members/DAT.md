@@ -1,22 +1,22 @@
 # 👤 Đạt – SV2: Advanced Query Specialist (Redis)
 
-**Phạm vi code:** `backend/src/redis/`
+**Phạm vi code:** `backend/src/main/java/vn/edu/huit/digitallibrary/reading/` và `ranking/`. Xem [phần dùng chung](../docs/SHARED.md).
 
 ## Phase 1
-- [ ] Cấu hình kết nối Redis (`ioredis`), module dùng chung
+- [ ] Hiện thực Redis bằng Spring Data Redis trên khung Spring Boot đã có
 - [ ] Cùng Vũ chốt quy ước key (`progress:{userId}:{bookId}`, `ranking:books`)
 - [ ] Script seed Redis: **≥ 50 Hash** tiến trình đọc + **1 ZSET 50 cuốn sách** kèm lượt đọc (phối hợp Sơn, dùng `bookId` thật từ Mongo)
 - [ ] Thử các lệnh cơ bản trên Redis Insight, ghi lại lệnh mẫu
 
 ## Phase 2 (trọng tâm – barem mục 3, 2.5đ)
 ### A. Lưu tiến trình đọc dở (Redis Hashes)
-- [ ] `POST /progress` → `HSET progress:{userId}:{bookId} chapter page line updatedAt`
-- [ ] `GET /progress/:userId/:bookId` → `HGETALL`, trả về độ trễ cực thấp
-- [ ] (Tùy chọn) `GET /progress/:userId` → danh sách sách đang đọc dở
+- [ ] `PUT /api/progress/{userId}/{bookId}` → `HSET progress:{userId}:{bookId} chapter page line updatedAt`
+- [ ] `GET /api/progress/{userId}/{bookId}` → `HGETALL`, trả về tiến trình đã lưu
+- [ ] (Tùy chọn) `GET /api/progress/{userId}` → danh sách sách đang đọc dở
 
 ### B. Bảng xếp hạng sách đọc nhiều nhất (Redis ZSET)
-- [ ] `POST /books/:id/read` → `ZINCRBY ranking:books 1 {bookId}` mỗi khi độc giả đọc chương
-- [ ] `GET /ranking?top=10` → `ZREVRANGE ranking:books 0 N-1 WITHSCORES`, ghép thông tin sách từ Mongo
+- [ ] `POST /api/books/{bookId}/read` → `ZINCRBY ranking:books 1 {bookId}` khi mở chương
+- [ ] `GET /api/ranking?top=10` → `ZREVRANGE ranking:books 0 N-1 WITHSCORES`, trả `bookId` và `score`; Sơn ghép thông tin sách
 - [ ] (Tùy chọn) Chống tăng điểm lặp quá nhanh: khóa `SET NX EX` theo user + chương
 
 ### C. Kiểm thử hiệu năng (phối hợp Sơn)

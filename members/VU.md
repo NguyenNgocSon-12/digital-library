@@ -1,6 +1,6 @@
 # 👤 Vũ – SV1: Data Architect & CRUD Lead
 
-**Phạm vi code:** `backend/src/mongo/`, `docs/ARCHITECTURE.md`
+**Phạm vi code:** `backend/src/main/java/vn/edu/huit/digitallibrary/catalog/`, `identity/`, `docs/ARCHITECTURE.md`. Xem [phần dùng chung](../docs/SHARED.md).
 
 ## Phase 1
 ### A. Thiết kế & báo cáo (2.5đ – barem mục 1)
@@ -10,15 +10,16 @@
 - [ ] Vẽ sơ đồ kiến trúc & document model
 
 ### B. API CRUD trên MongoDB (2.5đ – barem mục 2)
-- [ ] Khởi tạo backend (Express), kết nối MongoDB
+- [ ] Hiện thực domain `catalog` và `identity` trên khung Spring Boot đã có; kết nối MongoDB qua Spring Data
 - [ ] CRUD **sách**: tạo / danh sách (phân trang, lọc thể loại) / chi tiết / sửa / xóa
 - [ ] **Thêm chương mới** vào sách (`$push`), sửa/xóa chương
 - [ ] Quản lý **tài khoản độc giả**: đăng ký, đăng nhập, xem/sửa/xóa
 - [ ] Tạo index (text index tiêu đề/tác giả, index thể loại)
-- [ ] Viết tài liệu API (danh sách endpoint, ví dụ request/response)
+- [ ] Viết ví dụ request/response và cập nhật hợp đồng API trong `docs/SHARED.md`
 
 ## Phase 2
 - [ ] Hỗ trợ Đạt/Sơn: API lấy nội dung chương (`bookId` + `chapterNo`), lấy thông tin sách cho BXH
+- [ ] Chốt cơ chế xác thực và quyền quản trị trước khi Sơn nối giao diện tài khoản
 - [ ] Bổ sung báo cáo: kết quả đo hiệu năng, bảng so sánh Mongo vs Redis
 - [ ] Hoàn thiện báo cáo cuối, rà soát barem
 - [ ] Tham gia demo: đọc đến trang 30 rồi đóng trình duyệt

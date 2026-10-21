@@ -18,10 +18,12 @@ Cổng đọc sách điện tử trực tuyến cho phép:
 
 Chi tiết: xem [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
-## 3. Công nghệ (đề xuất – nhóm có thể đổi)
-- Backend: Node.js (Express) + `mongodb`/`mongoose` + `ioredis`
-- Frontend: HTML/JS thuần hoặc React (giao diện E-Reader)
+## 3. Công nghệ
+- Backend: Java 17+, Spring Boot, Spring Data MongoDB, Spring Data Redis, Maven
+- Frontend: React + Vite
 - Hạ tầng: Docker Compose; công cụ quan sát: MongoDB Compass, Redis Insight
+
+Khung backend và frontend đã chạy được; các API và màn hình nghiệp vụ đang chờ từng thành viên triển khai. Xem [phần dùng chung và hợp đồng tích hợp](docs/SHARED.md).
 
 ## 4. Khởi chạy nhanh (cho cả 3 thành viên)
 ```bash
@@ -29,6 +31,10 @@ git clone git@github.com:ThaiDuyVu/digital-library.git && cd digital-library
 cp .env.example .env
 docker compose up -d
 docker compose ps        # kiểm tra mongodb, redis healthy
+# terminal khác
+cd backend && ./mvnw spring-boot:run
+# terminal khác, từ thư mục gốc
+cd frontend && npm install && npm run dev
 ```
 | Dịch vụ | Địa chỉ |
 |---|---|
@@ -36,6 +42,8 @@ docker compose ps        # kiểm tra mongodb, redis healthy
 | Redis | `localhost:6379` |
 | Redis Insight | http://localhost:5540 (add DB: host `redis`, port `6379`) |
 | Mongo Express | http://localhost:8081 |
+| Spring Boot API | http://localhost:8080/api/health |
+| React | http://localhost:5173 |
 
 Dừng: `docker compose down` (giữ dữ liệu) | Xóa sạch: `docker compose down -v`
 
@@ -45,16 +53,17 @@ digital-library/
 ├── README.md
 ├── docker-compose.yml
 ├── .env.example
+├── backend/                # Spring Boot: catalog, identity, reading, ranking, common
+├── frontend/               # React: features theo domain, shared API client
 ├── docs/
 │   ├── ARCHITECTURE.md     # Giải trình Polyglot + thiết kế schema (barem mục 1)
 │   ├── PLAN.md             # Kế hoạch 2 phase + barem checklist
-│   └── DEMO_SCRIPT.md      # Kịch bản demo bảo vệ
+│   ├── DEMO_SCRIPT.md      # Kịch bản demo bảo vệ
+│   └── SHARED.md           # Ranh giới code, quy ước dữ liệu, hợp đồng API
 ├── members/
 │   ├── VU.md               # SV1 – Data Architect & CRUD Lead
 │   ├── DAT.md              # SV2 – Advanced Query Specialist (Redis)
 │   └── SON.md              # SV3 – Fullstack Integrator & DB Tester
-├── backend/                # API (Vũ: mongo/, Đạt: redis/)
-├── frontend/               # Giao diện E-Reader (Sơn)
 └── scripts/seed/           # Script nạp dummy data (Sơn)
 ```
 
@@ -71,7 +80,7 @@ digital-library/
 - Cuối mỗi phase: merge `develop` → `main`, gắn tag `phase-1`, `phase-2`.
 - Commit message: `feat:`, `fix:`, `docs:`, `chore:` + mô tả ngắn.
 - Không commit file `.env`.
-- Quy ước thư mục để tránh xung đột: Vũ sửa `backend/src/mongo/`, Đạt sửa `backend/src/redis/`, Sơn sửa `frontend/` và `scripts/`.
+- Quy ước thư mục và file dùng chung: xem [docs/SHARED.md](docs/SHARED.md). Vũ làm `catalog/` và `identity/`, Đạt làm `reading/` và `ranking/`, Sơn làm `frontend/` và `scripts/seed/`.
 
 ## 8. Lộ trình
 2 phase, mỗi phase trình bày 1 tuần. Xem [`docs/PLAN.md`](docs/PLAN.md).
