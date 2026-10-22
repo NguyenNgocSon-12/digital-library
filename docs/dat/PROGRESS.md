@@ -167,3 +167,17 @@ Stage chỉ production reading/ranking,test tương ứng,scripts/dat,AGENTS,mem
 Không thay production hoặc chạy lại kiểm thử: fingerprints vẫn đối chiếu được các run đã đạt. Kết quả14 Đạt/0 Chưa đạt/4 Bị chặn,manifest Sơn/UI/tổng duyệt và migration legacy vẫn giữ nguyên. Commit message theo bản nháp: feat: implement Redis reading progress and book ranking. Tra SHA local bằng git log sau commit; file so sánh PR được xuất riêng sau khi commit để có danh sách file/commit đúng HEAD.
 
 Kiểm tra trước commit: staged diff69 file trong scope, whitespace sạch; không có .env,log,target,Redis/Mongo runtime dump hoặc legacy-inventory.json chẩn đoán sai. Quét mẫu private key/Bearer/API token không có kết quả; dữ liệu mật khẩu trong mã chỉ là fixture/default demo theo nền repo, không có credential thật mới. Fingerprints production của3 run đã đạt khớp mã hiện tại. Không chạy lại test không đổi. Commit local được người dùng giao; không push hoặc tạo PR. Bằng chứng raw benchmark/manifest,regression đã lọc và inventory verified là artifact nghiệm thu có chủ đích, không phải DB runtime tạm.
+
+## Chuẩn bị bàn giao theo2PR
+
+- Giữ nguyên HEAD/commit c17086df35a7490770c0c8a3df2dc612ef8e42df,không amend/rebase/cherry-pick. Fetch origin xác nhận nền main4a0dd9b/develop5b1bec0 vẫn5/0.
+- TWO_PR_HANDOFF.md soạn title/body PR main→develop,giải thích5 commit và phụ thuộc BookService,Authenticated/CurrentUser/UserService,ApiException. Chưa tạo PR hoặc cập nhật nhánh chung. Merge nền cần bảo toàn ancestry bằng merge commit/fast-forward để PR2 chỉ còn Đạt.
+- COMMIT_SCOPE_AUDIT.md phân loại đủ69 file của commit:10 nghiệp vụ,4 test,4 script,51 tài liệu/bằng chứng. Scope/secret-pattern/whitespace kiểm tra trên tree commit; không có runtime/log/secret/bản inventory chẩn đoán sai. Artifact fixture/benchmark/regression được giữ có mục đích truy vết,tách dữ liệu nhóm.
+- HANDOFF cập nhật SHA commit và thứ tự:PR nền→fetch/gate ancestry/commit/file diff→review PR Đạt→chỉ push/tạo PR khi được giao. Gate chưa thể hoàn thành vì PR nền chưa merge. Nếu squash/rebase nền,dừng và chốt nhánh tích hợp mới; vẫn giữ commit cũ.
+- Lượt này chỉ sửa tài liệu; chưa commit tài liệu mới để không thay commit Đạt đã giao giữ nguyên. Không chạy test/build/seed/benchmark,dữ liệu alias cũ và blocker UI/manifest/tổng duyệt/migration giữ nguyên. Không reset usage.
+
+## Thực hiện bàn giao Git được người dùng cho phép
+
+Người dùng đã cho commit tài liệu,push nhánh làm việc và tạo2PR,bao gồm draftPR Đạt trước khi nền merge. Giữ nguyên commit c17086d; không merge,force-push hoặc sửa trực tiếp main/develop. Khi PR nền chưa merge,PR Đạt phải nêu đúng5 commit nền còn nằm trong diff,không dùng đoạn mô tả chỉ-phần-Đạt sau gate.
+
+Commit tài liệu chỉ gồm HANDOFF,PROGRESS,COMMIT_SCOPE_AUDIT,TWO_PR_HANDOFF. Không thêm tài liệu mới hoặc chạy test; legacy-inventory.json vẫn ngoài commit,dữ liệu alias/migration và các blocker giữ nguyên. Tài khoản connector datngo1203 có pull=true,push=false theo get_repo; endpoint collaborator-permission bị403 integration. Kiểm tra quyền Git transport và PR creation riêng,không suy diễn API read permission thành quyền push/create.

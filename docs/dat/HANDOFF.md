@@ -17,7 +17,7 @@ Backend reading/ranking đã triển khai và sửa F01/F02. [Nghiệm thu từn
 
 ## Git và phạm vi bàn giao
 
-- Nhánh local `codex/dat-work-dossier`, HEAD `4a0dd9b31fdc17601e2891f5acf28f69b4d98954`. Người dùng đã giao stage/review/commit local trong lượt tiếp theo; nội dung triển khai nằm trong commit `feat: implement Redis reading progress and book ranking` trên nhánh này (tra SHA bằng git log). Chưa push hoặc tạo PR.
+- Nhánh local `codex/dat-work-dossier`, commit nghiệp vụ `c17086df35a7490770c0c8a3df2dc612ef8e42df` (nền `4a0dd9b`). Đã commit local69 file theo `feat: implement Redis reading progress and book ranking`; giữ nguyên commit này. Chưa push hoặc tạo PR.
 - Rà cuối đã fetch origin: `origin/main...origin/develop` = `5 0`, develop thiếu 5 commit nền main. Không tự merge/rebase/push nhánh chung. Trước PR vào develop phải phối hợp cập nhật nền hoặc dựng nhánh chỉ có thay đổi Đạt trên nền đã thống nhất, rồi kiểm tra lại diff. Cần ít nhất một reviewer.
 - Production chỉ thêm reading/ranking; test tương ứng; script độc lập ở scripts/dat. File chung docs/SHARED công bố contract và invariant ID; members/DAT/AGENTS/docs/dat là hồ sơ/tiến độ. Không sửa catalog/identity/common, dependency, frontend hoặc scripts/seed của Sơn.
 - [Nội dung commit/PR soạn sẵn](COMMIT_PR_DRAFT.md). Người dùng đã giao tạo commit local theo bản nháp; chưa push hoặc tạo PR. Các file mới đã được rà cùng staged diff; loại bản inventory chẩn đoán sai, log và build output khỏi commit.
@@ -106,3 +106,12 @@ Code chỉ ngăn phân mảnh cho ghi mới: GET legacy progress vẫn đọc ke
 6. Chọn tài khoản/sách nhóm cố định, tổng duyệt ít nhất2 lần và lưu log/video/ảnh; xác nhận Vũ nhận raw/summary để đưa báo cáo. Chưa gửi tin ngoài khi user chưa giao. Cập nhật cả members/DAT.md, ACCEPTANCE_RESULTS và PROGRESS khi có kết quả mới.
 
 Tài liệu hiện tại tách backend/fixture đã đạt khỏi UI, manifest Sơn, migration legacy và tổng duyệt còn chờ. Không reset usage.
+
+## Thứ tự bàn giao2PR và trạng thái chờ
+
+1. [PR nền main→develop](TWO_PR_HANDOFF.md) do maintainer/Vũ review:5 commit/50 file hiện đang thiếu,bao gồm common lỗi/cấu hình,identity auth/session,catalog service và schema/hợp đồng. Cần merge commit hoặc fast-forward để giữ ancestry4a0dd9b; chưa cập nhật nhánh chung hoặc tạo PR.
+2. Commit nghiệp vụ Đạt c17086d được giữ nguyên. [Audit69 file](COMMIT_SCOPE_AUDIT.md):10 nghiệp vụ,4 test,4 script,51 tài liệu/bằng chứng; không có file ngoài scope hoặc dữ liệu runtime tạm. Bản inventory chẩn đoán lỗi vẫn untracked,không đưa vào commit.
+3. Chỉ sau PR nền merge mới fetch và chạy gate trong TWO_PR_HANDOFF: develop chứa4a0dd9b,develop..c17086d chỉ một commit,three-dot diff đúng69 file/status của Đạt. Nếu nền squash/rebase thì dừng,chốt nhánh tích hợp mới riêng; không âm thầm sửa commit Đạt.
+4. Chỉ push/tạo PR Đạt sau gate và khi được giao. Tài liệu chuẩn bị2PR của lượt này chưa commit; không amend c17086d. Chưa chạy lại test vì production/phụ thuộc không đổi,fingerprint evidence còn khớp.
+
+Các blocker giữ nguyên: R05 UI,I01–I03,manifest/dữ liệu Sơn,tổng duyệt và xác nhận Vũ nhận số liệu; alias cũ chưa migration. Chỉ backend và fixture riêng đã có evidence đạt; PR nền/PR Đạt đều chưa được gửi. Không reset usage.
