@@ -1,0 +1,8 @@
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.895 s -- in vn.edu.huit.digitallibrary.catalog.controller.BookControllerTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.976 s -- in vn.edu.huit.digitallibrary.DigitalLibraryApiApplicationTests
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.360 s -- in vn.edu.huit.digitallibrary.ranking.RankingApiTest
+DAT_EVIDENCE userA=6ada0c83fbebec9e0e825068 userB=6ada0c83fbebec9e0e825069 bookA=6ada0c84fbebec9e0e82506b bookB=6ada0c84fbebec9e0e82506c concurrentSuccess=40 score=41 TTL=-1
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.162 s -- in vn.edu.huit.digitallibrary.reading.DatRedisIntegrationTest
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.495 s -- in vn.edu.huit.digitallibrary.reading.ProgressApiTest
+[INFO] Tests run: 29, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS

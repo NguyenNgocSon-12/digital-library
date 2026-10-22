@@ -1,0 +1,226 @@
+[
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/DigitalLibraryApiApplication.java",
+    "sha256": "15181D9E907D266C94CA17854190233E6E75313C420E89ADC99474DFCE1ED863"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/package-info.java",
+    "sha256": "7565DFF026BAC98552076DFD1D2E92577E2A122F4BE097BED1FE202109CE32E1"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/config/CatalogMongoInitializer.java",
+    "sha256": "EA8AB913B885FFC220C36D2BEE05BD0438133EF2376E6AB1F915DA3FCBEBF55E"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/controller/BookController.java",
+    "sha256": "C24D0161EAEE018E0F0893CB883AED1C7E2AC6EB738775390CE9A22DD4DFBBBA"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/controller/ChapterController.java",
+    "sha256": "36F892EFB765FF5E70CBDC9352AE019C5F541453923F5E0376E0583AABDB962D"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/BookDetail.java",
+    "sha256": "9DE0E80ABE957DDE2E3694AE05313CB1BE0A6A64A49E32B9A55D471522AA8045"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/BookRequest.java",
+    "sha256": "D14492EB17C15FFE9A936CCA3404B12083D9A47EC811A4B6098888B7D16E11F2"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/BookSummary.java",
+    "sha256": "FC35F17E3704B8106BC92FFBE89DA3A362764AAB9CCA58322D6287680BAFFB8C"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/ChapterContent.java",
+    "sha256": "27E32D889E63BAA0F930A6169694E2CB62B82B933ACAA12CF6CDDA586CEF8B08"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/ChapterRequest.java",
+    "sha256": "400634C281B2C5DCFAD27E234C9F233200FF2EEE25AC2B66545083A531C0B3CC"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/ChapterSummary.java",
+    "sha256": "0BB8B8ADF78600F5519173A270C8C2B9E63F4D5A89EF45DCED65FDD45DD446F9"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/CreateBookRequest.java",
+    "sha256": "5C944B3FBEB593A716DF0D67316CA555F94FE762C85A7D70887ADB05F71A15EB"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/dto/SectionRequest.java",
+    "sha256": "829FE8F8192AC8E12D0028FEF83BDB39C454E76E5E33C8A82B77BA99693FF248"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/model/Book.java",
+    "sha256": "3C89F87B8DD77626016D94F52ABE056DDF9C8675499EA101698D0794228BC461"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/model/Chapter.java",
+    "sha256": "9303CADD3E2D0FF7B87985B9D6D28ED109C6CE947EC1744E70C70F0EABF8A9C4"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/model/Section.java",
+    "sha256": "BAAD730807717C7222B82AFE61FCF846AA7D09478F669B2BC293107673786E8E"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/catalog/service/BookService.java",
+    "sha256": "010804272482D3CBCB8DE20CA89AC1686606DDF525FC442F8B93A6E6F7E08495"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/common/ApiError.java",
+    "sha256": "D7D66B581050C1BC6B26137CCC10E55F40BDA5B51AEF7989B20E487948298963"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/common/ApiException.java",
+    "sha256": "D32952C31FD89A7FC050EA205BCCD45EE760031835833C3023D47D9A0AD343DA"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/common/GlobalExceptionHandler.java",
+    "sha256": "14113962858A6601F4D5306ECB20DE0B570EF2CCDB68E5F0ED74B84B0D18AE85"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/common/HealthController.java",
+    "sha256": "147B29A3292B9CFFD49EE1CF4EBE0BB99317BE09D46B852A9F5B2A0266DDD863"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/common/MongoSchemaSupport.java",
+    "sha256": "EC5C98B3B3DB76B36D46F2EF9278A9BAEDD0CC3CB32983379AAD1975C69CBBD1"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/common/PageResponse.java",
+    "sha256": "3770492AFB09F46CB7998685C894BFAE9A4842AA860FD75F15CD1B124568EE86"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/package-info.java",
+    "sha256": "C16355878E872789B1C6DDE977FE33644EBF377BB79E326BDE7FB8B588B5FC57"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/auth/AdminOnly.java",
+    "sha256": "A51BD9EDA3C1E8EFB1049DAEF1DD6ED5777F265563E8723ABF8DEA2CADD1E8B7"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/auth/Authenticated.java",
+    "sha256": "80E935CF00DA9225997CB3F40C0C2DB0E95B23E1EA2F4B1D3E592AB5DDE2E756"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/auth/AuthInterceptor.java",
+    "sha256": "E33726A7B391FAE7FA80D071A54AFCCD87DA1CB8E83E2B165207EA9F29258FD7"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/auth/CurrentUser.java",
+    "sha256": "06586E063D9D41E1BD117ED9DCB7B6B896D3115944CA0A798FC7DC13B9F7FE1D"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/auth/CurrentUserArgumentResolver.java",
+    "sha256": "DB1DADCB84024828C4817046A067BE612C0F773D7432965507028056EFD38429"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/config/AdminAccountInitializer.java",
+    "sha256": "3C519A9BC5303BFA991ED323E5C4C0DC0E22B55243988675401C74A3F1AE721F"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/config/AuthWebConfig.java",
+    "sha256": "606B19CE1D7F4D2D44ADD073B346AF9F1FEE9B5F62AED54F9CB9EE7EC4A58E2F"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/config/IdentityMongoInitializer.java",
+    "sha256": "03566D1C97EF2553686C089CC2A72B0F0EDF3F8AA5D5FE894C08D150601B6C72"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/controller/AuthController.java",
+    "sha256": "071E1831407D07997D4F03483B355578A06AEB19869F8BD88C8CDF345C1FF392"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/controller/UserController.java",
+    "sha256": "41CF579164AEFF903DA02106F030B19A3D2DE40DA5A4E9EFADDAD7CBF4C068BD"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/dto/LoginRequest.java",
+    "sha256": "FE77F9F219AF377C2C5FA2F54B5529AD374D140B24D4FA1615E9D66D71D7ABFB"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/dto/LoginResponse.java",
+    "sha256": "46B0FA30A0F7D644E3C3DE1E8DD9E2C04EE1CD84985968D42DFEAF04C4944E8D"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/dto/RegisterRequest.java",
+    "sha256": "D77FAFCECA0A24C9E9DDF87B2D25A7E0C3A421CBEF0E1B29B2D1C9DBA9B87D4A"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/dto/UpdateUserRequest.java",
+    "sha256": "A4B828D627945CA87EE3F53C98441CC230A8294EACC8F1CD230A3E9571342C60"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/dto/UserResponse.java",
+    "sha256": "3D90AA21F6C8885BB6684BEB51F1894732BC3F99D371D988589C4A904175DAAB"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/model/Role.java",
+    "sha256": "B816A83E1C8EE8AF1CE167F4F498E4E061659EEDF7F09D98E7CDC55290C9C4ED"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/model/User.java",
+    "sha256": "9B712730AE0BD408EAE835A60DC8F3F6CDDC69C5668C874BB9C51B1099F8A726"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/repository/UserRepository.java",
+    "sha256": "683A00B975839A1E4FC9ABFE1141006D707A4DDB0D6F43DE0F2A45665F4CB6B5"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/service/SessionService.java",
+    "sha256": "3CA213B86B3E08A79F9F09589FB357C41225909E0128BEC39D5146ED04039679"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/identity/service/UserService.java",
+    "sha256": "B56F53177770DF926D7FCFDD3A8FC607B9C9EF8C74DD10B072BAEF5AD553A6AC"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/ranking/package-info.java",
+    "sha256": "F242492409F022E87F6E749316C9AEDBA0FB0C5788BD06A2E65F56B7A95DF59F"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/ranking/controller/RankingController.java",
+    "sha256": "CD508E28CBDBDD5A741C2C003C9402EA443C098E9C23DC2EDE91E0602A7FBAB5"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/ranking/dto/RankingEntry.java",
+    "sha256": "382C5DDA9E99A3D4620B9B92BD991F42B1DA77FF17F88AA1C334CDFC6FD639F3"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/ranking/repository/RankingRepository.java",
+    "sha256": "61A19BD6568DE159B9DF743F63D823DA8969330B8DEC56D0BBC2129218242AC6"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/ranking/service/RankingService.java",
+    "sha256": "EFD51D0591614A33637C0C7EDEE75FDEFDB6E745B6DF82CB63582CABA9CEC1A9"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/reading/package-info.java",
+    "sha256": "0B140CF1C71836D0FD77B16EB6294F75E7F580B17BEEB33732E7AF6386F1D022"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/reading/controller/ProgressController.java",
+    "sha256": "78FF6283E518A826167EA84BBD5BDD844EE126A8271E6B0313FBD2A600731A33"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/reading/dto/ProgressIntegerDeserializer.java",
+    "sha256": "4C788E933040EE04CE5E430C385150E4AF5D17AAD2A9F42C75A9843835C6641C"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/reading/dto/ProgressRequest.java",
+    "sha256": "A7F9E5CC18229E5095210E76606C0C920E8662342F31F2036C467FC28937E637"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/reading/dto/ProgressResponse.java",
+    "sha256": "5A6AB5D80C789CF0FF6E95E0BAB82DF44D04F17269C25F5040F37025AE20E18D"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/reading/repository/ProgressRepository.java",
+    "sha256": "139F39DBA2ED57D2DF69752AE457887F522508DD0591FA5ADCF7D6CF8C969754"
+  },
+  {
+    "path": "backend/src/main/java/vn/edu/huit/digitallibrary/reading/service/ProgressService.java",
+    "sha256": "3AF76D47A6F6DCFFBBBC52E9123CEC1925D1462E2C30515D3E1D00F495D640C1"
+  }
+]

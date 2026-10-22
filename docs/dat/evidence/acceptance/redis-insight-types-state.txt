@@ -1,0 +1,245 @@
+Browser tab: 1, Title: "redis:6379 [db13] - Workbench", URL: "http://localhost:5540/99469917-3ce3-4c4f-85c6-358070676b76/workbench".
+0 AXWebArea redis:6379 [db13] - Workbench, URL: localhost:5540/99469917-3ce3-4c4f-85c6-358070676b76/workbench
+	1 container
+		2 container root
+			3 container Description: Main navigation, ID: radix-:r1:
+				4 content list
+					5 link localhost:5540/
+				6 container
+					7 link redis.io/try-free?utm_source=redisinsight&utm_medium=app&utm_campaign=navigation_menu
+					8 text 3
+					9 link github.com/RedisInsight/RedisInsight
+			10 container
+				11 button Redis Databases
+				12 text /
+				13 container
+					14 text redis:6379
+					15 image Chevron Down
+				229 button db13
+					230 text db
+					231 text 13
+				19 image Info
+				20 image Layer_1
+				21 text 0
+				22 image Layer_1
+				23 text 2 MB
+				24 image Layer_1
+				25 text 82
+				26 image Layer_1
+				27 text 5
+				28 button
+				29 button Auto-refresh config popover
+				30 button Insights-trigger
+				31 tab group
+					32 tab (selectable, settable, boolean) Browse, ID: radix-:r36:-trigger-browser, Value: 0
+Browse
+					33 tab (selectable, settable, boolean) Search, ID: radix-:r36:-trigger-vector-search, Value: 0
+Search
+					34 tab (selected, settable, boolean) Workbench, ID: radix-:r36:-trigger-workbench, Value: 1
+Workbench
+					35 tab (selectable, settable, boolean) Analyze, ID: radix-:r36:-trigger-analytics, Value: 0
+Analyze
+					36 tab (selectable, settable, boolean) Pub/Sub, ID: radix-:r36:-trigger-pub-sub, Value: 0
+Pub/Sub
+				37 button bulk actions
+				38 button Add key
+				39 container main-content
+					40 text field (settable) 1
+
+Tutorials:
+
+Intro to search
+Basic use cases
+Intro to vector search
+
+Raw mode
+
+Group results
+
+Run
+						163 container
+							164 editor (settable) Editor content;Press Alt+F1 for Accessibility Options.
+						43 text Tutorials:
+						44 button Intro to search
+						45 button Basic use cases
+						46 button Intro to vector search
+						47 checkbox Raw mode, Value: 0
+							48 image editor
+							49 text Raw mode
+						50 checkbox Group results, Value: 0
+							51 image
+							52 text Group results
+						53 button Run query
+					54 splitter 30
+					72 container
+						73 button Clear Results
+						232 container 60799a75-2fdc-4b3d-aec0-90c6356dd08d
+							233 button [db13] TYPE session:093b5dc6d0eb1896edb111379d6671fa27665e8eef0ad0f77a525e1e1ca6101a Copy query 20:37:16 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								234 container
+									235 text [db13] TYPE session:093b5dc6d0eb1896edb111379d6671fa27665e8eef0ad0f77a525e1e1ca6101a
+									236 button Copy query
+								237 text 20:37:16 22 Oct 2026
+								238 image Uptime
+								239 button Open full screen
+								240 button Delete command
+								249 button Re-run command
+								250 button Toggle result
+							243 container
+								244 button Copy result
+								251 text "string"
+						165 container 39aa59eb-c78b-49b8-b5ae-4195fb7ef53a
+							166 button SELECT 0 Copy query 20:36:52 22 Oct 2026 Open full screen Delete command Re-run command Toggle result
+								167 container
+									168 text SELECT 0
+									169 button Copy query
+								170 text 20:36:52 22 Oct 2026
+								171 button Open full screen
+								172 button Delete command
+								173 button Re-run command
+								174 button Toggle result
+							246 text "SELECT is not supported by the Workbench. The list of all unsupported commands: blpop, brpop, blmove, brpoplpush, bzpopmin, bzpopmax, xread, xreadgroup, select, monitor, subscribe, psubscribe, ssubscribe, sync, psync, script debug, hello 3, blpop, brpop, blmove, brpoplpush, bzpopmin, bzpopmax, xread, xreadgroup"
+						176 container d5f9a1c6-18b3-46c4-ab3a-fbca944c3497
+							177 button TYPE session:093b5dc6d0eb1896edb111379d6671fa27665e8eef0ad0f77a525e1e1ca6101a Copy query 20:36:52 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								178 container
+									179 text TYPE session:093b5dc6d0eb1896edb111379d6671fa27665e8eef0ad0f77a525e1e1ca6101a
+									180 button Copy query
+								181 text 20:36:52 22 Oct 2026
+								182 image Uptime
+								183 button Open full screen
+								184 button Delete command
+								185 button Re-run command
+								186 button Toggle result
+							187 container
+								188 button Copy result
+								189 text "none"
+						190 container da5540de-bb20-4a75-92be-1331bbec3403
+							191 button SELECT 13 Copy query 20:36:52 22 Oct 2026 Open full screen Delete command Re-run command Toggle result
+								192 container
+									193 text SELECT 13
+									194 button Copy query
+								195 text 20:36:52 22 Oct 2026
+								196 button Open full screen
+								197 button Delete command
+								198 button Re-run command
+								199 button Toggle result
+							247 text "SELECT is not supported by the Workbench. The list of all unsupported commands: blpop, brpop, blmove, brpoplpush, bzpopmin, bzpopmax, xread, xreadgroup, select, monitor, subscribe, psubscribe, ssubscribe, sync, psync, script debug, hello 3, blpop, brpop, blmove, brpoplpush, bzpopmin, bzpopmax, xread, xreadgroup"
+						201 container 406ce40d-a33b-44a9-9352-81b0c36e5818
+							202 button TYPE dat-fixture:v1:ranking:books Copy query 20:36:52 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								203 container
+									204 text TYPE dat-fixture:v1:ranking:books
+									205 button Copy query
+								206 text 20:36:52 22 Oct 2026
+								207 image Uptime
+								208 button Open full screen
+								209 button Delete command
+								210 button Re-run command
+								211 button Toggle result
+							212 container
+								213 button Copy result
+								214 text "zset"
+						215 container 9eb6a631-6c93-46e6-a493-38d2561fc6b4
+							216 button TYPE dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001 Copy query 20:36:52 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								217 container
+									218 text TYPE dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001
+									219 button Copy query
+								220 text 20:36:52 22 Oct 2026
+								221 image Uptime
+								222 button Open full screen
+								223 button Delete command
+								224 button Re-run command
+								225 button Toggle result
+							226 container
+								227 button Copy result
+								228 text "hash"
+						74 container a2eb396b-32b8-4861-af26-8f6ab92db746
+							75 button TYPE session:__dat_acceptance_absent_probe__ Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								76 container
+									77 text TYPE session:__dat_acceptance_absent_probe__
+									78 button Copy query
+								79 text 20:34:14 22 Oct 2026
+								80 image Uptime
+								81 button Open full screen
+								82 button Delete command
+								83 button Re-run command
+								84 button Toggle result
+							85 container
+								86 button Copy result
+								87 text "none"
+						88 container 3f97ffe4-9e5a-4799-a39b-50a177f4e954
+							89 button ZREVRANGE dat-fixture:v1:ranking:books 0 2 WITHSCORES Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								90 container
+									91 text ZREVRANGE dat-fixture:v1:ranking:books 0 2 WITHSCORES
+									92 button Copy query
+								93 text 20:34:14 22 Oct 2026
+								94 image Uptime
+								95 button Open full screen
+								96 button Delete command
+								97 button Re-run command
+								98 button Toggle result
+							99 container
+								100 button Copy result
+								101 container
+									102 text 1) "da7000000000000000000032"
+									103 text 2) "50"
+									104 text 3) "da7000000000000000000031"
+									105 text 4) "49"
+									106 text 5) "da7000000000000000000030"
+									107 text 6) "48"
+						108 container 36c923b3-e54d-455a-aa70-c0f56600e7ff
+							109 button ZCARD dat-fixture:v1:ranking:books Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								110 container
+									111 text ZCARD dat-fixture:v1:ranking:books
+									112 button Copy query
+								113 text 20:34:14 22 Oct 2026
+								114 image Uptime
+								115 button Open full screen
+								116 button Delete command
+								117 button Re-run command
+								118 button Toggle result
+							119 container
+								120 button Copy result
+								121 text (integer) 50
+						122 container 9b8048c7-7fc1-4ab2-adfa-8db6e415c9bb
+							123 button TTL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001 Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								124 container
+									125 text TTL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001
+									126 button Copy query
+								127 text 20:34:14 22 Oct 2026
+								128 image Uptime
+								129 button Open full screen
+								130 button Delete command
+								131 button Re-run command
+								132 button Toggle result
+							133 container
+								134 button Copy result
+								135 text (integer) -1
+						136 container 3ad19ea5-3dca-4a3f-9cd7-40f00e8870d7
+							137 button HGETALL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001 Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								138 container
+									139 text HGETALL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001
+									140 button Copy query
+								141 text 20:34:14 22 Oct 2026
+								142 image Uptime
+								143 button Open full screen
+								144 button Delete command
+								150 button Re-run command
+								151 button Toggle result
+							147 container
+								148 button Copy result
+								149 container
+									152 text 1) "page"
+									153 text 2) "2"
+									154 text 3) "updatedAt"
+									155 text 4) "2026-10-22T00:00:00Z"
+									156 text 5) "chapter"
+									157 text 6) "2"
+									158 text 7) "line"
+									159 text 8) "1"
+				62 container cli
+					63 text CLI
+					64 text Command Helper
+					65 text Profiler
+					66 link Description: Let us know what you think, Value: surveymonkey.com/r/redisinsight
+		248 text key, hint
+
+The focused UI element is 239 button Open full screen

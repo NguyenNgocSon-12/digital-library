@@ -1,0 +1,10 @@
+{
+  "baseCommit": "4a0dd9b31fdc17601e2891f5acf28f69b4d98954",
+  "mongoDatabase": "digital_library_dat_acceptance_20261022203530_82c03582",
+  "dataPolicy": "Fresh Mongo database and dedicated Redis container; preserve all evidence and data, no flush",
+  "sourceSha256": "93C1A230B2AA2115DCE3C18C8906C0B470EFD6010A0906CA6B7666094F1BC5FA",
+  "redisEndpoint": "localhost:50078/0",
+  "redisContainer": "dl_dat_acceptance_20261022203530_82c03582",
+  "time": "2026-10-22T20:35:30.9809620+07:00",
+  "command": "mvnw.cmd -B -Dtest=DatRedisIntegrationTest test"
+}
