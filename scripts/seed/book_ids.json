@@ -1,0 +1,302 @@
+[
+  {
+    "bookId": "b00c00000000000000000001",
+    "title": "Câu chuyện về tấm bản đồ sao thất lạc",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000002",
+    "title": "Dấu chân quanh căn biệt thự bỏ hoang",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000003",
+    "title": "Lời nhắn từ kinh thành xưa",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000004",
+    "title": "Ký ức khu vườn sau nhà",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000005",
+    "title": "Lời nhắn từ thị trấn ven biển",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000006",
+    "title": "Cẩm nang sinh học tế bào",
+    "chapterCount": 5
+  },
+  {
+    "bookId": "b00c00000000000000000007",
+    "title": "Hiểu về tính sẵn sàng",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c00000000000000000008",
+    "title": "Nhập môn khởi nghiệp",
+    "chapterCount": 9
+  },
+  {
+    "bookId": "b00c00000000000000000009",
+    "title": "Hiểu về động lực nội tại",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c0000000000000000000a",
+    "title": "Lời nhắn từ căn nhà ba gian",
+    "chapterCount": 9
+  },
+  {
+    "bookId": "b00c0000000000000000000b",
+    "title": "Giáo sư Đài và tín hiệu lạ từ vũ trụ",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c0000000000000000000c",
+    "title": "Ký ức căn biệt thự bỏ hoang",
+    "chapterCount": 9
+  },
+  {
+    "bookId": "b00c0000000000000000000d",
+    "title": "Lời nhắn từ ải biên giới",
+    "chapterCount": 5
+  },
+  {
+    "bookId": "b00c0000000000000000000e",
+    "title": "Khu vườn sau nhà và sự dũng cảm",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c0000000000000000000f",
+    "title": "Người viết và chuyến xe đêm",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000010",
+    "title": "Cân bằng sinh thái: từ nguyên lý đến thực hành",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000011",
+    "title": "Nhập môn hệ thống phân tán",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000012",
+    "title": "Nhập môn thị trường tài chính",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000013",
+    "title": "Cẩm nang quản lý thời gian",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000014",
+    "title": "Hành trình đi tìm tình thân",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000015",
+    "title": "Bí mật của cánh cổng lượng tử",
+    "chapterCount": 9
+  },
+  {
+    "bookId": "b00c00000000000000000016",
+    "title": "Bí mật của tờ giấy bị xé dở",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000017",
+    "title": "Ký ức ngôi đình làng",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000018",
+    "title": "Dấu chân quanh khu vườn sau nhà",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c00000000000000000019",
+    "title": "Lời nhắn từ bến xe sớm mai",
+    "chapterCount": 9
+  },
+  {
+    "bookId": "b00c0000000000000000001a",
+    "title": "Phương pháp thực nghiệm: từ nguyên lý đến thực hành",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c0000000000000000001b",
+    "title": "Những điều cần biết về dữ liệu huấn luyện",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c0000000000000000001c",
+    "title": "Khởi nghiệp cho người bắt đầu",
+    "chapterCount": 9
+  },
+  {
+    "bookId": "b00c0000000000000000001d",
+    "title": "Phát triển bản thân cho người bắt đầu",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c0000000000000000001e",
+    "title": "Câu chuyện về bức thư chưa gửi",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c0000000000000000001f",
+    "title": "Bí mật của chiếc máy dịch thời gian",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000020",
+    "title": "Câu chuyện về chiếc va li khóa kín",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000021",
+    "title": "Dấu chân quanh ngôi đình làng",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000022",
+    "title": "Chú gấu Mật và chiếc cầu vồng nhỏ",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c00000000000000000023",
+    "title": "Người viết và chiếc máy ảnh film",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000024",
+    "title": "Nhập môn hóa học vật liệu",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000025",
+    "title": "Cẩm nang trí tuệ nhân tạo",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c00000000000000000026",
+    "title": "Chi phí cơ hội: từ nguyên lý đến thực hành",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000027",
+    "title": "Khả năng lắng nghe: từ nguyên lý đến thực hành",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000028",
+    "title": "Lời nhắn từ con ngõ cuối phố",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000029",
+    "title": "Hành trình đi tìm tương lai của loài người",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c0000000000000000002a",
+    "title": "Câu chuyện về chiếc chìa khóa lạ",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c0000000000000000002b",
+    "title": "Câu chuyện về đạo sắc phong",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c0000000000000000002c",
+    "title": "Hành trình đi tìm lòng tốt",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c0000000000000000002d",
+    "title": "Bí mật của tấm bản đồ gấp nếp",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c0000000000000000002e",
+    "title": "Những điều cần biết về năng lượng",
+    "chapterCount": 5
+  },
+  {
+    "bookId": "b00c0000000000000000002f",
+    "title": "Điện toán đám mây cho người bắt đầu",
+    "chapterCount": 5
+  },
+  {
+    "bookId": "b00c00000000000000000030",
+    "title": "Cẩm nang khởi nghiệp",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000031",
+    "title": "Giấc ngủ: từ nguyên lý đến thực hành",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c00000000000000000032",
+    "title": "Câu chuyện về chiếc hộp gỗ cũ",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000033",
+    "title": "Bí mật của tín hiệu lạ từ vũ trụ",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c00000000000000000034",
+    "title": "Ký ức con phố cổ về đêm",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000035",
+    "title": "Bí mật của tấm bia đá rêu phong",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000036",
+    "title": "Cậu bé Tí và chiếc ô vàng",
+    "chapterCount": 9
+  },
+  {
+    "bookId": "b00c00000000000000000037",
+    "title": "Câu chuyện về chuyến xe đêm",
+    "chapterCount": 10
+  },
+  {
+    "bookId": "b00c00000000000000000038",
+    "title": "Cẩm nang khoa học khí hậu",
+    "chapterCount": 8
+  },
+  {
+    "bookId": "b00c00000000000000000039",
+    "title": "Độ trễ: từ nguyên lý đến thực hành",
+    "chapterCount": 7
+  },
+  {
+    "bookId": "b00c0000000000000000003a",
+    "title": "Những điều cần biết về cung và cầu",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c0000000000000000003b",
+    "title": "Nhập môn giao tiếp hằng ngày",
+    "chapterCount": 6
+  },
+  {
+    "bookId": "b00c0000000000000000003c",
+    "title": "Dấu chân quanh căn nhà ba gian",
+    "chapterCount": 6
+  }
+]
