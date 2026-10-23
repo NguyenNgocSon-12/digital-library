@@ -1,6 +1,6 @@
 # Kiến trúc & thiết kế CSDL
 
-> Phụ trách: Vũ (SV1 – Data Architect). Phần Redis cho tiến trình đọc và bảng xếp hạng chốt cùng Đạt.
+> Phụ trách: Vũ (SV1 – Data Architect). Phần Redis cho tiến trình đọc và bảng xếp hạng chốt cùng Đạt; Đạt đã hiện thực đúng quy ước key ở mục 3 (`reading/`, `ranking/`).
 > Nguồn sự thật của schema MongoDB nằm ở `backend/src/main/resources/mongo/*.schema.json`; backend áp validator và tạo index mỗi lần khởi động, nên tài liệu này và database luôn khớp nhau.
 
 ## 1. Giải trình Polyglot Persistence (1.0đ)
@@ -56,8 +56,8 @@ flowchart LR
 
 1. **Duyệt và mở sách:** React gọi `GET /api/books`, `GET /api/books/{bookId}` → catalog đọc MongoDB (đã bỏ toàn văn bằng projection).
 2. **Mở chương:** React gọi `GET /api/books/{bookId}/chapters/{chapterNo}` (MongoDB, `$elemMatch` chỉ lấy một chương) và `POST /api/books/{bookId}/read` → `ZINCRBY` trên Redis.
-3. **Lật trang / đóng sách:** `PUT /api/progress/{userId}/{bookId}` → `HSET` trên Redis.
-4. **Mở lại sách:** `GET /api/progress/{userId}/{bookId}` → `HGETALL` trên Redis, giao diện cuộn đến đúng trang.
+3. **Lật trang / đóng sách:** `PUT /api/progress/{userId}/{bookId}` (cần Bearer token, chính chủ hoặc admin) → kiểm tra sách và chương tồn tại qua `BookService` → `HSET` trên Redis.
+4. **Mở lại sách:** `GET /api/progress/{userId}/{bookId}` → `HGETALL` trên Redis, giao diện cuộn đến đúng trang. Chưa có tiến trình → `404`, giao diện mở từ đầu.
 5. **Xem BXH:** `GET /api/ranking?top=10` → `ZREVRANGE` lấy danh sách `bookId`, sau đó `GET /api/books/batch?ids=...` ghép tiêu đề, tác giả từ MongoDB.
 
 **Liên kết giữa hai hệ thống chỉ qua ID:** Redis chỉ chứa `bookId`, `userId` (chuỗi ObjectId của MongoDB), không sao chép tiêu đề hay nội dung sách. Nhờ vậy sửa thông tin sách trong MongoDB không cần đồng bộ sang Redis.
@@ -246,6 +246,8 @@ Ví dụ document `books`:
 
 `chapter` và `page` bắt đầu từ 1, `line` từ 0, `updatedAt` theo ISO 8601 UTC (giống `docs/SHARED.md`).
 
+Hiện thực bằng `StringRedisTemplate` (Spring Data Redis): `ProgressRepository` ghi cả bốn field bằng một lệnh `HSET`; `RankingRepository` dùng `ZINCRBY` (nguyên tử, không đọc rồi cộng trong Java) và `ZREVRANGE ... WITHSCORES`. ID hợp lệ được chuẩn hóa về ObjectId hex chữ thường trước khi ghép key, nên `bookId` viết hoa/thường không tạo hai member khác nhau.
+
 ### 3.2. Lệnh chính
 ```redis
 # Tiến trình đọc
@@ -272,5 +274,58 @@ SADD user-sessions:6ad9aae8a64520f313150511 <sha256>
 - Mỗi request có `@Authenticated`/`@AdminOnly` tra Redis lấy `userId`, rồi đọc user trong MongoDB để có `role` hiện tại. Tài khoản bị xóa hoặc đổi quyền có hiệu lực ngay.
 - Đổi mật khẩu hoặc xóa tài khoản thu hồi mọi phiên qua `user-sessions:{userId}`; đăng xuất xóa phiên hiện tại.
 
-## 4. Kết quả đo hiệu năng
-_Chờ số liệu đo Redis vs MongoDB từ Đạt và Sơn (Phase 2)._
+## 4. Dữ liệu mẫu (dummy data)
+
+Script nằm ở `scripts/seed/`, chạy theo thứ tự MongoDB rồi Redis để Redis chỉ chứa ID có thật (xem [README](../scripts/seed/README.md)).
+
+| Bước | Script | Kết quả | Yêu cầu barem |
+|---|---|---|---|
+| 1 | `seed_books.py` (Sơn) | 60 sách × 5–10 chương (469 chương, ~3,2 triệu ký tự), mỗi chương 2–4 mục; 10 thể loại | 50–100 sách × 5–10 chương |
+| 2 | `seed_redis.py` (Đạt, Sơn) | 10 độc giả mẫu trong `users`; 60 Hash `progress:{userId}:{bookId}`; ZSET `ranking:books` 50 sách | ≥ 50 Hash, 1 ZSET 50 sách |
+
+- **ID ổn định:** sách seed có `_id = b00c` + số thứ tự (vd `b00c00000000000000000001`), độc giả seed có `_id = 5eed` + số thứ tự. Chạy lại không sinh ID mới nên Redis không có `bookId`/`userId` mồ côi.
+- **Chạy lặp được:** MongoDB ghi bằng `ReplaceOne(upsert)` theo `_id`; Redis ghi `HSET` (ghi đè) và `ZADD` (đặt điểm, không cộng dồn). Script không đụng sách admin tạo qua API, phiên đăng nhập hay key khác.
+- **Đúng schema:** script sách tự kiểm tra theo `books.schema.json` trước khi ghi (`chapterNo`/`sectionNo` int32, `createdAt` kiểu date); độc giả seed có `passwordHash` BCrypt nên đăng nhập được (`reader01`…`reader10` / `reader123`).
+- **Tiến trình hợp lệ:** `chapter` không vượt số chương thật của sách (đọc lại từ MongoDB khi seed).
+
+Kiểm tra trực quan:
+```js
+// MongoDB Compass / mongosh
+db.books.countDocuments()                                             // 60 sách seed (+ sách tạo qua API)
+db.books.aggregate([{$project: {n: {$size: "$chapters"}}}, {$group: {_id: null, min: {$min: "$n"}, max: {$max: "$n"}}}])
+```
+```redis
+# Redis Insight Workbench / redis-cli
+SCAN 0 MATCH progress:5eed* COUNT 1000
+HGETALL progress:5eed00000000000000000001:b00c00000000000000000001
+ZCARD ranking:books
+ZREVRANGE ranking:books 0 9 WITHSCORES
+```
+
+## 5. Kết quả đo hiệu năng
+
+**Sơ bộ (Đạt, 22/10/2026):** đọc một tiến trình đọc (4 field) bằng Redis `HGETALL` so với MongoDB `findOne` theo `_id` có projection cùng 4 field; 50 bản ghi, warm-up 200 lần, 1000 mẫu mỗi bên, xen kẽ từng cặp, kết nối giữ sẵn. Redis 7.4 (AOF bật), MongoDB 7.0, cùng máy Windows 11.
+
+| CSDL | Trung bình (ms) | Trung vị (ms) | p95 (ms) | Lỗi |
+|---|---|---|---|---|
+| MongoDB `findOne` | 1,033 | 0,900 | 1,886 | 0 |
+| Redis `HGETALL` | 0,622 | 0,533 | 1,187 | 0 |
+
+Redis nhanh hơn khoảng 1,7 lần ở trung vị. Phép đo chỉ tính thời gian truy vấn CSDL (không gồm HTTP, xác thực) và chạy trên bộ dữ liệu fixture riêng. Dữ liệu gốc: [benchmark-raw.csv](dat/evidence/acceptance/benchmark/benchmark-raw.csv), [summary](dat/evidence/acceptance/benchmark/benchmark-summary.json).
+
+_Phase 2: Đạt và Sơn đo lại trên dữ liệu seed thật và bổ sung phép đo ghi (lật trang), bảng xếp hạng (`ZREVRANGE` so với `sort` trên MongoDB)._
+
+## 6. Hiện trạng Phase 1 theo barem
+
+| Hạng mục barem | Điểm | Hiện thực | Kiểm chứng |
+|---|---|---|---|
+| Giải trình Polyglot Persistence | 1,0 | Mục 1 tài liệu này | – |
+| Schema MongoDB + cấu trúc Redis | 1,5 | Mục 2, 3; `backend/src/main/resources/mongo/*.schema.json` áp validator và index khi khởi động | Ghi document sai schema bị MongoDB từ chối |
+| CRUD sách / chương / độc giả | 2,5 | `catalog/`, `identity/` (Vũ); hợp đồng API tại [SHARED.md](SHARED.md) mục 4 | Test `BookControllerTest`; smoke test curl: tạo/sửa/xóa sách, thêm/xóa chương, đăng ký/đăng nhập/xóa độc giả, phân quyền 401/403 |
+| Dummy data (phần MongoDB + chuẩn bị Redis) | 1,0 (một phần) | Mục 4 | 60 sách/469 chương, 60 Hash, ZSET 50 sách; chạy lại không đổi |
+| Redis: kết nối, module khung | – (chuẩn bị Phase 2) | `reading/`, `ranking/` (Đạt): `GET/PUT /api/progress/...`, `POST /api/books/{id}/read`, `GET /api/ranking` | Test `ProgressApiTest`, `RankingApiTest` |
+| Giao diện quản lý sách, danh sách/đọc cơ bản | – | `frontend/src/features/catalog/`, `identity/` (Sơn) | Duyệt, tìm, lọc, đọc chương; admin thêm/sửa/xóa sách và chương; đăng ký/đăng nhập |
+
+Kết quả kiểm thử backend khi tích hợp Phase 1 (23/10/2026): 32 test, 0 lỗi; 4 test tích hợp Redis của Đạt bỏ qua mặc định, chỉ chạy khi đặt `DAT_INTEGRATION_TESTS=true`.
+
+Phase 2 còn lại: E-Reader phân trang và tự cuộn đến trang đã lưu, gọi tăng lượt đọc khi mở chương, widget Top sách (Sơn); đo hiệu năng trên dữ liệu seed (Đạt, Sơn); `ZREM` khi xóa sách (Đạt).

@@ -23,7 +23,7 @@ Chi tiết: xem [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 - Frontend: React + Vite
 - Hạ tầng: Docker Compose; công cụ quan sát: MongoDB Compass, Redis Insight
 
-Backend đã có API sách, chương, độc giả và đăng nhập (catalog, identity); tiến trình đọc, bảng xếp hạng và giao diện đang chờ triển khai. Xem [phần dùng chung và hợp đồng tích hợp](docs/SHARED.md).
+Phase 1 đã tích hợp: API sách, chương, độc giả, đăng nhập (catalog, identity); API tiến trình đọc và bảng xếp hạng trên Redis (reading, ranking); giao diện kho sách, quản trị, tài khoản; script seed MongoDB + Redis (`scripts/seed/`). Phase 2 còn E-Reader, widget Top sách và đo hiệu năng. Xem [phần dùng chung và hợp đồng tích hợp](docs/SHARED.md).
 
 Backend tự tạo tài khoản quản trị `admin` / `admin123` khi khởi động lần đầu (đổi qua `ADMIN_USERNAME`, `ADMIN_PASSWORD`).
 

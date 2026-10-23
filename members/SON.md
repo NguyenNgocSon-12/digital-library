@@ -4,16 +4,16 @@
 
 ## Phase 1
 ### A. Dummy data MongoDB (1.0đ – barem mục 4)
-- [ ] Script seed: **50–100 đầu sách**, mỗi sách **5–10 chương** nội dung toàn văn lồng nhau (faker hoặc sách miễn phí Project Gutenberg)
-- [ ] Script chạy lặp được, có lệnh chạy được ghi trong README khi hoàn thành
+- [x] Script seed: **50–100 đầu sách**, mỗi sách **5–10 chương** nội dung toàn văn lồng nhau (faker hoặc sách miễn phí Project Gutenberg)
+- [x] Script chạy lặp được, có lệnh chạy được ghi trong README khi hoàn thành
 - [ ] Kiểm tra dữ liệu bằng **MongoDB Compass** (số lượng, cấu trúc lồng nhau)
-- [ ] Phối hợp Đạt nạp dữ liệu Redis (≥ 50 Hash, ZSET 50 sách)
+- [x] Phối hợp Đạt nạp dữ liệu Redis (≥ 50 Hash, ZSET 50 sách)
 
 ### B. Giao diện cơ bản
-- [ ] Trang danh sách sách, tìm kiếm/lọc, chi tiết sách
-- [ ] Trang quản trị: thêm/sửa/xóa sách, thêm chương (gọi API của Vũ)
-- [ ] Đăng ký / đăng nhập độc giả
-- [ ] Dùng khung React/Vite trong `frontend/`, thay các trang placeholder bằng giao diện thật
+- [x] Trang danh sách sách, tìm kiếm/lọc, chi tiết sách
+- [x] Trang quản trị: thêm/sửa/xóa sách, thêm chương (gọi API của Vũ)
+- [x] Đăng ký / đăng nhập độc giả
+- [x] Dùng khung React/Vite trong `frontend/`, thay các trang placeholder bằng giao diện thật
 
 ## Phase 2 (barem mục 3 & 4)
 ### C. Giao diện E-Reader
