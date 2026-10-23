@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-22T20:37:57.8933502+07:00",
+  "totalPhysicalMemory": 16869543936,
+  "action": "verify",
+  "cpu": [
+    {
+      "Name": "12th Gen Intel(R) Core(TM) i5-12500H",
+      "NumberOfCores": 12,
+      "NumberOfLogicalProcessors": 16
+    }
+  ],
+  "sourceSha256": "FBAA0BEBEF247FF6B0E0967C3F3B7295EC5F0CBAFBF461E8D95D04535585B0C8"
+}

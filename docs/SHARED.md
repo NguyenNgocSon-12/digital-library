@@ -133,3 +133,17 @@ Nếu máy đã cài sẵn MongoDB chạy ở cổng 27017 (Homebrew, Windows se
 4. ✅ Vũ chốt auth (mục 3); Đạt gắn `@Authenticated` cho API tiến trình đọc, Sơn gửi header `Authorization` từ frontend.
 
 Mỗi PR chỉ sửa domain mình phụ trách. Khi phải sửa file dùng chung, ghi rõ lý do, ảnh hưởng tới domain còn lại và cập nhật ví dụ request/response tại đây.
+
+## Hợp đồng phần Đạt đã triển khai local (22/10/2026)
+
+D01–D05 được người dùng xác nhận; chỉ thay phần reading/ranking, giữ nguyên catalog/identity. Sơn cần áp dụng:
+
+- GET/PUT `/api/progress/{userId}/{bookId}` cần Bearer token, chính chủ/admin. PUT nhận JSON số nguyên `{"chapter":3,"page":30,"line":0}`; thiếu/null, số thực, chuỗi số, sai kiểu hoặc dưới min → 400. GET/PUT thành công trả 200 `{"chapter":3,"page":30,"line":0,"updatedAt":"2026-10-22T13:00:00Z"}` (timestamp minh họa, thời gian thật theo server).
+- GET chưa có progress → 404 NOT_FOUND; UI chọn vị trí mở đầu. Sách không tồn tại/sai id → 404; PUT xác minh chương tồn tại qua BookService. Chưa áp max page/line vì phụ thuộc phân trang frontend. Admin thao tác user khác phải có user tồn tại; người không có quyền vẫn nhận 403 trước lookup.
+- POST `/api/books/{bookId}/read` công khai, trả 200 `{"bookId":"...","score":42.0}`. Mỗi request thành công tăng 1 bằng ZINCRBY; reload/retry cũng tăng, chưa có chống lặp. UI gọi một lần theo mỗi lần mở chương; endpoint chưa nhận chapter.
+- GET `/api/ranking?top=10` công khai, mảng `{bookId,score}`, top cho phép 1–100, ngoài biên/không nguyên → 400. Hòa điểm theo member giảm dần của Redis; không có tiêu chí hòa điểm nghiệp vụ riêng.
+- Chưa tự cleanup khi xóa sách/user. Sơn ghép metadata qua batch và bỏ qua ID mất theo hợp đồng hiện có.
+
+Bằng chứng response thật: `docs/dat/evidence/http-smoke.json`; kiểm thử và giới hạn: `docs/dat/RESULTS.md`. Fixture `dat-fixture:v1:*` là bộ độc lập; API vẫn dùng key chuẩn `progress:*`/`ranking:books`. Frontend chưa được thay đổi hoặc xác minh trong lượt này. Khi PR: lý do sửa tài liệu chung là công bố contract vừa triển khai để Sơn tích hợp; chưa gửi thông báo ngoài chat.
+
+Quy tắc định danh sau sửa F01/F02: reading/ranking dùng ObjectId hex thường cho mọi ID hợp lệ trước truy cập Redis và trả bookId; progress chuẩn hóa userId trước canAccess nên chính chủ dùng biến thể hoa vẫn truy cập cùng tài nguyên. ID sai giữ luồng lỗi cũ. Không đổi catalog/batch hoặc request/response field/status. Dữ liệu alias đã sinh trước sửa cần migration có duyệt; GET ranking chỉ chuẩn hóa DTO, không tự gộp điểm/loại entry cũ. Xem docs/dat/ID_NORMALIZATION.md. Lý do cập nhật file chung: làm rõ invariant ID để frontend/seed dùng cùng định danh.

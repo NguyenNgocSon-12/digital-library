@@ -1,0 +1,9 @@
+{
+  "test": "DatRedisIntegrationTest#objectIdAliasesMustShareProgressAndRanking",
+  "redisPort": "54595",
+  "redisContainer": "dl_dat_review_20261022204608",
+  "baseCommit": "4a0dd9b31fdc17601e2891f5acf28f69b4d98954",
+  "sourceSha256": "B29EED20A74E5AA72BD1C1B39732954D9B5AD973FE5DB08AA9E40BB2908718B3",
+  "mongoDatabase": "digital_library_dat_review_20261022204608",
+  "time": "2026-10-22T20:46:09.4493382+07:00"
+}

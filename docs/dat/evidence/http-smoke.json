@@ -1,0 +1,28 @@
+{
+  "withoutTokenStatus": 401,
+  "publicReadBody": {
+    "bookId": "6ada0c84fbebec9e0e82506b",
+    "score": 42.0
+  },
+  "getStatus": 200,
+  "bookId": "6ada0c84fbebec9e0e82506b",
+  "mongoDatabase": "digital_library_dat_test",
+  "putBody": {
+    "chapter": 3,
+    "page": 30,
+    "line": 0,
+    "updatedAt": "2026-10-22T13:22:49.460428100Z"
+  },
+  "transport": "HTTP TCP localhost:8080",
+  "putStatus": 200,
+  "time": "2026-10-22T20:22:49.5537748+07:00",
+  "userId": "6ada0e29617c4a6c213a79ea",
+  "publicReadStatus": 200,
+  "getBody": {
+    "chapter": 3,
+    "page": 30,
+    "line": 0,
+    "updatedAt": "2026-10-22T13:22:49.460428100Z"
+  },
+  "redisDatabase": 15
+}
