@@ -1,6 +1,6 @@
 # Phần dùng chung và hợp đồng tích hợp
 
-Tài liệu này là điểm thống nhất giữa backend Spring Boot, frontend React và script seed. **Đã triển khai:** `GET /api/health`, catalog (sách, chương) và identity (độc giả, đăng nhập). Các endpoint còn lại là hợp đồng dự kiến để từng thành viên hiện thực; khi đổi tên trường hoặc đường dẫn, sửa tài liệu này trong cùng Pull Request.
+Tài liệu này là điểm thống nhất giữa backend Spring Boot, frontend React và script seed. **Đã triển khai:** `GET /api/health`, catalog (sách, chương), identity (độc giả, đăng nhập), reading (tiến trình đọc) và ranking (lượt đọc, xếp hạng). Các endpoint còn lại là hợp đồng dự kiến để từng thành viên hiện thực; khi đổi tên trường hoặc đường dẫn, sửa tài liệu này trong cùng Pull Request.
 
 ## 1. Ranh giới sở hữu
 
@@ -62,9 +62,9 @@ Tất cả endpoint nghiệp vụ dùng tiền tố `/api` và JSON. Lỗi chu�
 | Độc giả | `POST /api/users` | Vũ ✅ | Công khai, đăng ký role `USER` |
 | Xác thực | `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me` | Vũ ✅ | logout và me cần token |
 | Độc giả | `GET/PUT/DELETE /api/users/{userId}` | Vũ ✅ | `@Authenticated`, chính chủ hoặc admin. PUT nhận `email`, `fullName`, `password` (trường nào null thì giữ nguyên); đổi mật khẩu thu hồi mọi phiên |
-| Tiến trình | `GET /api/progress/{userId}/{bookId}`, `PUT /api/progress/{userId}/{bookId}` | Đạt | Body PUT: `{"chapter":1,"page":1,"line":0}` |
-| Lượt đọc | `POST /api/books/{bookId}/read` | Đạt | Tăng score khi mở chương |
-| Xếp hạng | `GET /api/ranking?top=10` | Đạt | Trả `[{ "bookId": "...", "score": 42 }]`; Sơn ghép sách từ API catalog |
+| Tiến trình | `GET /api/progress/{userId}/{bookId}`, `PUT /api/progress/{userId}/{bookId}` | Đạt ✅ | Body PUT: `{"chapter":1,"page":1,"line":0}` |
+| Lượt đọc | `POST /api/books/{bookId}/read` | Đạt ✅ | Tăng score khi mở chương |
+| Xếp hạng | `GET /api/ranking?top=10` | Đạt ✅ | Trả `[{ "bookId": "...", "score": 42 }]`; Sơn ghép sách từ API catalog |
 
 Vũ và Đạt nên đưa ví dụ response thật vào đây khi endpoint hoàn thành. Nếu endpoint trả DTO khác dự kiến, cập nhật bảng trước khi Sơn nối giao diện.
 
@@ -128,7 +128,7 @@ Nếu máy đã cài sẵn MongoDB chạy ở cổng 27017 (Homebrew, Windows se
 ## 6. Thứ tự tích hợp
 
 1. ✅ Vũ chốt schema sách và DTO API, cung cấp CRUD cơ bản.
-2. Sơn seed MongoDB bằng ID ổn định hoặc ghi nhận các `bookId` vừa tạo; Đạt seed Redis từ đúng các ID này.
+2. ✅ Sơn seed MongoDB bằng ID ổn định (`seed_books.py`); Redis seed từ đúng các ID này (`seed_redis.py`).
 3. Đạt hoàn thành progress và ranking; Sơn nối E-Reader và Top sách.
 4. ✅ Vũ chốt auth (mục 3); Đạt gắn `@Authenticated` cho API tiến trình đọc, Sơn gửi header `Authorization` từ frontend.
 

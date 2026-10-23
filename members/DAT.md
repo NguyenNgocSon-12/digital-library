@@ -5,7 +5,7 @@
 ## Phase 1
 - [x] Hiện thực Redis bằng Spring Data Redis trên khung Spring Boot đã có — Mongo/Redis thật và regression ID đã qua, [bằng chứng](../docs/dat/ID_NORMALIZATION.md).
 - [x] Cùng Vũ chốt quy ước key (`progress:{userId}:{bookId}`, `ranking:books`) — quy ước đã có trong [hợp đồng nhóm](../docs/SHARED.md); ID hợp lệ chuẩn hóa về ObjectId hex thường, [kiểm chứng](../docs/dat/ID_NORMALIZATION.md).
-- [ ] Script seed Redis: **≥ 50 Hash** tiến trình đọc + **1 ZSET 50 cuốn sách** kèm lượt đọc (phối hợp Sơn, dùng `bookId` thật từ Mongo) — fixture riêng đã đạt 50/50, chưa có manifest/tích hợp dữ liệu Sơn; [audit và giới hạn](../docs/dat/ACCEPTANCE_RESULTS.md).
+- [x] Script seed Redis: **≥ 50 Hash** tiến trình đọc + **1 ZSET 50 cuốn sách** kèm lượt đọc (phối hợp Sơn, dùng `bookId` thật từ Mongo) — `scripts/seed/seed_redis.py` đọc `book_ids.json` của Sơn: 60 Hash, ZSET 50 sách trên key thật; fixture riêng vẫn giữ cho benchmark, [audit](../docs/dat/ACCEPTANCE_RESULTS.md).
 - [x] Thử các lệnh cơ bản trên Redis Insight, ghi lại lệnh mẫu — [ảnh Hash/ZSET/session và lệnh S03](../docs/dat/ACCEPTANCE_RESULTS.md).
 
 ## Phase 2 (trọng tâm – barem mục 3, 2.5đ)

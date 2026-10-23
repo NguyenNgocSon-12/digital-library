@@ -16,7 +16,7 @@
 | 7 | Chuẩn bị Redis: kết nối, module khung, seed 50 Hash + 1 ZSET 50 sách | Đạt | 1.0đ (một phần) |
 | 8 | Quan sát dữ liệu bằng Compass & Redis Insight | Sơn | – |
 
-**Deliverable Phase 1:** báo cáo thiết kế, API CRUD chạy được, dummy data nạp xong, demo CRUD.
+**Deliverable Phase 1:** báo cáo thiết kế, API CRUD chạy được, dummy data nạp xong, demo CRUD. Hiện trạng: [ARCHITECTURE.md mục 6](ARCHITECTURE.md#6-hiện-trạng-phase-1-theo-barem).
 
 ## Phase 2 – Tính năng nâng cao & hoàn thiện (trình bày tuần 2)
 **Mục tiêu:** Tích hợp Redis, giao diện E-Reader, kiểm thử hiệu năng, demo sống.
@@ -34,10 +34,10 @@
 **Deliverable Phase 2:** hệ thống hoàn chỉnh, dummy data đạt chuẩn, demo sống trơn tru, báo cáo cuối.
 
 ## Checklist barem (tự đánh giá)
-- [ ] Giải trình Polyglot (1.0)
-- [ ] Schema Mongo + cấu trúc Redis (1.5)
-- [ ] CRUD sách / chương / độc giả (2.5)
+- [x] Giải trình Polyglot (1.0)
+- [x] Schema Mongo + cấu trúc Redis (1.5)
+- [x] CRUD sách / chương / độc giả (2.5)
 - [ ] Redis Hashes – tiến trình đọc (1.25)
 - [ ] Redis ZSET – BXH (1.25)
-- [ ] Dummy data: ≥50 sách × 5–10 chương; ≥50 Hash; 1 ZSET 50 sách (1.0)
+- [x] Dummy data: ≥50 sách × 5–10 chương; ≥50 Hash; 1 ZSET 50 sách (1.0) – `scripts/seed/`
 - [ ] Demo sống (1.5)
