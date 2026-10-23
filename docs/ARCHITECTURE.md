@@ -66,7 +66,7 @@ flowchart LR
 | Rủi ro | Ảnh hưởng | Cách xử lý trong đồ án |
 |---|---|---|
 | Redis mất dữ liệu khi tắt đột ngột | Mất tiến trình đọc hoặc lượt đọc gần nhất | Docker Compose bật AOF (`--appendonly yes`), mất tối đa khoảng 1 giây ghi. Tiến trình và lượt đọc là dữ liệu có thể chấp nhận mất một phần. |
-| Không có transaction giữa MongoDB và Redis | Xóa sách trong MongoDB, `bookId` vẫn còn trong `ranking:books` | Catalog `GET /api/books/batch` bỏ qua id không tồn tại nên BXH không hiển thị sách đã xóa; ranking có thể `ZREM` khi gặp id mồ côi. |
+| Không có transaction giữa MongoDB và Redis | Xóa sách/độc giả trong MongoDB, `bookId`/`userId` vẫn còn trong Redis | Sau khi xóa, catalog/identity phát sự kiện `BookDeletedEvent`/`UserDeletedEvent`; ranking `ZREM` sách, reading xóa `progress:*` liên quan. Nếu Redis lỗi đúng lúc đó, `GET /api/books/batch` vẫn bỏ qua id không tồn tại nên BXH không hiển thị sách đã xóa. |
 | Nhất quán cuối (eventual) | BXH có thể lệch vài lượt so với thực tế khi request lỗi | Chấp nhận được với BXH "thịnh hành"; không dùng cho dữ liệu cần chính xác tuyệt đối. |
 | Vận hành 2 hệ thống | Thêm cấu hình, giám sát | Docker Compose dựng sẵn cả hai, kèm Compass/Mongo Express và Redis Insight. |
 | Dữ liệu Redis bị giới hạn bởi RAM | Không lưu được toàn văn | Chỉ lưu dữ liệu nhỏ (vài field mỗi Hash, một ZSET), nội dung lớn ở MongoDB. |
@@ -267,7 +267,10 @@ SADD user-sessions:6ad9aae8a64520f313150511 <sha256>
 ### 3.3. Đồng bộ với MongoDB
 - Bản demo **không đồng bộ ngược** tiến trình/lượt đọc về MongoDB; Redis bật AOF để giữ dữ liệu khi khởi động lại.
 - Hướng mở rộng nếu cần lưu lâu dài: job định kỳ đọc `ranking:books` và `SCAN progress:*` rồi `bulkWrite` vào collection `reading_history` (write-behind).
-- Khi xóa sách, ranking nên `ZREM ranking:books {bookId}`; nếu chưa làm, `GET /api/books/batch` đã bỏ qua id không còn tồn tại.
+- Xóa dây chuyền qua sự kiện Spring, mỗi domain chỉ dọn key của mình:
+  - Xóa sách → `ZREM ranking:books {bookId}` và xóa `progress:*:{bookId}` (dùng `SCAN`, không dùng `KEYS`).
+  - Xóa độc giả → xóa `progress:{userId}:*` và mọi phiên đăng nhập.
+- MongoDB là nguồn sự thật: xóa trong MongoDB thành công trước, lỗi Redis khi dọn chỉ ghi log và được `GET /api/books/batch` che bằng cách bỏ qua id không tồn tại.
 
 ### 3.4. Phiên đăng nhập
 - `POST /api/auth/login` kiểm tra BCrypt trong MongoDB rồi sinh token ngẫu nhiên 256 bit, lưu **băm SHA-256** của token vào Redis. Người xem Redis Insight không lấy được token dùng được.
@@ -326,6 +329,10 @@ _Phase 2: Đạt và Sơn đo lại trên dữ liệu seed thật và bổ sung 
 | Redis: kết nối, module khung | – (chuẩn bị Phase 2) | `reading/`, `ranking/` (Đạt): `GET/PUT /api/progress/...`, `POST /api/books/{id}/read`, `GET /api/ranking` | Test `ProgressApiTest`, `RankingApiTest` |
 | Giao diện quản lý sách, danh sách/đọc cơ bản | – | `frontend/src/features/catalog/`, `identity/` (Sơn) | Duyệt, tìm, lọc, đọc chương; admin thêm/sửa/xóa sách và chương; đăng ký/đăng nhập |
 
-Kết quả kiểm thử backend khi tích hợp Phase 1 (23/10/2026): 32 test, 0 lỗi; 4 test tích hợp Redis của Đạt bỏ qua mặc định, chỉ chạy khi đặt `DAT_INTEGRATION_TESTS=true`.
+Kết quả kiểm thử backend sau khi tích hợp và sửa lỗi Phase 1 (23/10/2026): 34 test, 0 lỗi; 4 test tích hợp Redis của Đạt bỏ qua mặc định, chỉ chạy khi đặt `DAT_INTEGRATION_TESTS=true`.
 
-Phase 2 còn lại: E-Reader phân trang và tự cuộn đến trang đã lưu, gọi tăng lượt đọc khi mở chương, widget Top sách (Sơn); đo hiệu năng trên dữ liệu seed (Đạt, Sơn); `ZREM` khi xóa sách (Đạt).
+Lỗi phát hiện khi rà soát tích hợp và đã sửa:
+- Email hợp lệ theo `@Email` nhưng thiếu dấu chấm (`a@localhost`) bị validator MongoDB từ chối, API trả 500. API nay kiểm tra cùng mẫu với `users.schema.json` và mọi lỗi vi phạm schema trả `400 BAD_REQUEST`.
+- Xóa sách/độc giả để lại `bookId`/`userId` mồ côi trong Redis, Top 10 chỉ còn 9 sách sau khi ghép. Nay dọn bằng sự kiện (mục 3.3).
+
+Phase 2 còn lại: E-Reader phân trang và tự cuộn đến trang đã lưu, gọi tăng lượt đọc khi mở chương, widget Top sách (Sơn); đo hiệu năng trên dữ liệu seed (Đạt, Sơn).

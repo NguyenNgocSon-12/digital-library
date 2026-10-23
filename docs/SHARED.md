@@ -59,7 +59,7 @@ Tất cả endpoint nghiệp vụ dùng tiền tố `/api` và JSON. Lỗi chu�
 | Sách | `POST /api/books`, `PUT /api/books/{bookId}`, `DELETE /api/books/{bookId}` | Vũ ✅ | `@AdminOnly`. POST nhận kèm `chapters[]`; PUT chỉ sửa thông tin sách, không sửa chương |
 | Chương | `GET /api/books/{bookId}/chapters/{chapterNo}` | Vũ ✅ | Công khai. Toàn văn một chương cho E-Reader |
 | Chương | `POST /api/books/{bookId}/chapters`, `PUT /api/books/{bookId}/chapters/{chapterNo}`, `DELETE /api/books/{bookId}/chapters/{chapterNo}` | Vũ ✅ | `@AdminOnly`. POST bỏ trống `chapterNo` thì gán số kế tiếp; trùng số → 409. PUT không đổi được `chapterNo` |
-| Độc giả | `POST /api/users` | Vũ ✅ | Công khai, đăng ký role `USER` |
+| Độc giả | `POST /api/users` | Vũ ✅ | Công khai, đăng ký role `USER`. Email phải có dạng `ten@mien.tld` (cùng mẫu với validator MongoDB) |
 | Xác thực | `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me` | Vũ ✅ | logout và me cần token |
 | Độc giả | `GET/PUT/DELETE /api/users/{userId}` | Vũ ✅ | `@Authenticated`, chính chủ hoặc admin. PUT nhận `email`, `fullName`, `password` (trường nào null thì giữ nguyên); đổi mật khẩu thu hồi mọi phiên |
 | Tiến trình | `GET /api/progress/{userId}/{bookId}`, `PUT /api/progress/{userId}/{bookId}` | Đạt ✅ | Body PUT: `{"chapter":1,"page":1,"line":0}` |
@@ -142,7 +142,7 @@ D01–D05 được người dùng xác nhận; chỉ thay phần reading/ranking
 - GET chưa có progress → 404 NOT_FOUND; UI chọn vị trí mở đầu. Sách không tồn tại/sai id → 404; PUT xác minh chương tồn tại qua BookService. Chưa áp max page/line vì phụ thuộc phân trang frontend. Admin thao tác user khác phải có user tồn tại; người không có quyền vẫn nhận 403 trước lookup.
 - POST `/api/books/{bookId}/read` công khai, trả 200 `{"bookId":"...","score":42.0}`. Mỗi request thành công tăng 1 bằng ZINCRBY; reload/retry cũng tăng, chưa có chống lặp. UI gọi một lần theo mỗi lần mở chương; endpoint chưa nhận chapter.
 - GET `/api/ranking?top=10` công khai, mảng `{bookId,score}`, top cho phép 1–100, ngoài biên/không nguyên → 400. Hòa điểm theo member giảm dần của Redis; không có tiêu chí hòa điểm nghiệp vụ riêng.
-- Chưa tự cleanup khi xóa sách/user. Sơn ghép metadata qua batch và bỏ qua ID mất theo hợp đồng hiện có.
+- Xóa sách tự `ZREM` khỏi `ranking:books` và xóa `progress:*:{bookId}`; xóa độc giả tự xóa `progress:{userId}:*` (sự kiện `BookDeletedEvent`/`UserDeletedEvent`, cập nhật 23/10/2026). Sơn vẫn ghép metadata qua batch và bỏ qua ID mất.
 
 Bằng chứng response thật: `docs/dat/evidence/http-smoke.json`; kiểm thử và giới hạn: `docs/dat/RESULTS.md`. Fixture `dat-fixture:v1:*` là bộ độc lập; API vẫn dùng key chuẩn `progress:*`/`ranking:books`. Frontend chưa được thay đổi hoặc xác minh trong lượt này. Khi PR: lý do sửa tài liệu chung là công bố contract vừa triển khai để Sơn tích hợp; chưa gửi thông báo ngoài chat.
 
