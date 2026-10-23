@@ -1,0 +1,18 @@
+[
+  {
+    "backend": "mongo",
+    "matchesSummary": true,
+    "medianMs": 0.9004,
+    "p95Ms": 1.8855,
+    "meanMs": 1.0326982,
+    "count": 1000
+  },
+  {
+    "backend": "redis",
+    "matchesSummary": true,
+    "medianMs": 0.5332,
+    "p95Ms": 1.1874,
+    "meanMs": 0.6219189,
+    "count": 1000
+  }
+]

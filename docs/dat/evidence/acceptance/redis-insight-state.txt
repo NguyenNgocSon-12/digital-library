@@ -1,0 +1,165 @@
+Browser tab: 1, Title: "redis:6379 - Workbench", URL: "http://localhost:5540/99469917-3ce3-4c4f-85c6-358070676b76/workbench".
+0 AXWebArea redis:6379 - Workbench, URL: localhost:5540/99469917-3ce3-4c4f-85c6-358070676b76/workbench
+	1 container
+		2 container root
+			3 container Description: Main navigation, ID: radix-:r1:
+				4 content list
+					5 link localhost:5540/
+				6 container
+					7 link redis.io/try-free?utm_source=redisinsight&utm_medium=app&utm_campaign=navigation_menu
+					8 text 3
+					9 link github.com/RedisInsight/RedisInsight
+			10 container
+				11 button Redis Databases
+				12 text /
+				13 container
+					14 text redis:6379
+					15 image Chevron Down
+				16 button db0
+					17 text db
+					18 text 0
+				19 image Info
+				20 image Layer_1
+				21 text 0
+				22 image Layer_1
+				23 text 2 MB
+				24 image Layer_1
+				25 text 82
+				26 image Layer_1
+				27 text 4
+				28 button
+				29 button Auto-refresh config popover
+				30 button Insights-trigger
+				31 tab group
+					32 tab (selectable, settable, boolean) Browse, ID: radix-:r36:-trigger-browser, Value: 0
+Browse
+					33 tab (selectable, settable, boolean) Search, ID: radix-:r36:-trigger-vector-search, Value: 0
+Search
+					34 tab (selected, settable, boolean) Workbench, ID: radix-:r36:-trigger-workbench, Value: 1
+Workbench
+					35 tab (selectable, settable, boolean) Analyze, ID: radix-:r36:-trigger-analytics, Value: 0
+Analyze
+					36 tab (selectable, settable, boolean) Pub/Sub, ID: radix-:r36:-trigger-pub-sub, Value: 0
+Pub/Sub
+				37 button bulk actions
+				38 button Add key
+				39 container main-content
+					40 text field (settable) 1
+
+Tutorials:
+
+Intro to search
+Basic use cases
+Intro to vector search
+
+Raw mode
+
+Group results
+
+Run
+						70 container
+							71 editor (settable) Editor content;Press Alt+F1 for Accessibility Options.
+						43 text Tutorials:
+						44 button Intro to search
+						45 button Basic use cases
+						46 button Intro to vector search
+						47 checkbox Raw mode, Value: 0
+							48 image editor
+							49 text Raw mode
+						50 checkbox Group results, Value: 0
+							51 image
+							52 text Group results
+						53 button Run query
+					54 splitter 30
+					72 container
+						73 button Clear Results
+						74 container a2eb396b-32b8-4861-af26-8f6ab92db746
+							75 button TYPE session:__dat_acceptance_absent_probe__ Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								76 container
+									77 text TYPE session:__dat_acceptance_absent_probe__
+									78 button Copy query
+								79 text 20:34:14 22 Oct 2026
+								80 image Uptime
+								81 button Open full screen
+								82 button Delete command
+								83 button Re-run command
+								84 button Toggle result
+							85 container
+								86 button Copy result
+								87 text "none"
+						88 container 3f97ffe4-9e5a-4799-a39b-50a177f4e954
+							89 button ZREVRANGE dat-fixture:v1:ranking:books 0 2 WITHSCORES Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								90 container
+									91 text ZREVRANGE dat-fixture:v1:ranking:books 0 2 WITHSCORES
+									92 button Copy query
+								93 text 20:34:14 22 Oct 2026
+								94 image Uptime
+								95 button Open full screen
+								96 button Delete command
+								97 button Re-run command
+								98 button Toggle result
+							99 container
+								100 button Copy result
+								101 container
+									102 text 1) "da7000000000000000000032"
+									103 text 2) "50"
+									104 text 3) "da7000000000000000000031"
+									105 text 4) "49"
+									106 text 5) "da7000000000000000000030"
+									107 text 6) "48"
+						108 container 36c923b3-e54d-455a-aa70-c0f56600e7ff
+							109 button ZCARD dat-fixture:v1:ranking:books Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								110 container
+									111 text ZCARD dat-fixture:v1:ranking:books
+									112 button Copy query
+								113 text 20:34:14 22 Oct 2026
+								114 image Uptime
+								115 button Open full screen
+								116 button Delete command
+								117 button Re-run command
+								118 button Toggle result
+							119 container
+								120 button Copy result
+								121 text (integer) 50
+						122 container 9b8048c7-7fc1-4ab2-adfa-8db6e415c9bb
+							123 button TTL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001 Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command Re-run command Toggle result
+								124 container
+									125 text TTL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001
+									126 button Copy query
+								127 text 20:34:14 22 Oct 2026
+								128 image Uptime
+								129 button Open full screen
+								130 button Delete command
+								131 button Re-run command
+								132 button Toggle result
+							133 container
+								134 button Copy result
+								135 text (integer) -1
+						136 container 3ad19ea5-3dca-4a3f-9cd7-40f00e8870d7
+							137 button HGETALL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001 Copy query 20:34:14 22 Oct 2026 Uptime Open full screen Delete command
+								138 container
+									139 text HGETALL dat-fixture:v1:progress:da7100000000000000000001:da7000000000000000000001
+									140 button Copy query
+								141 text 20:34:14 22 Oct 2026
+								142 image Uptime
+								143 button Open full screen
+								144 button Delete command
+							147 container
+								148 button Copy result
+								149 container
+									150 text 1) "page"
+									151 text 2) "2"
+									152 text 3) "updatedAt"
+									153 text 4) "2026-10-22T00:00:00Z"
+									154 text 5) "chapter"
+									155 text 6) "2"
+									156 text 7) "line"
+									157 text 8) "1"
+				62 container cli
+					63 text CLI
+					64 text Command Helper
+					65 text Profiler
+					66 link Description: Let us know what you think, Value: surveymonkey.com/r/redisinsight
+		69 text key, hint
+
+The focused UI element is 143 button Open full screen

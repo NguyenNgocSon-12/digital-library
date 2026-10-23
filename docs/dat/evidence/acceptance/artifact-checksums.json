@@ -1,0 +1,58 @@
+[
+  {
+    "path": "docs/dat/evidence/acceptance/api-redis-evidence.json",
+    "sha256": "EBE52478B4A796696E78E8968523FC9CEFB4E574DA3AE6894B8D63D67D0AB920"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/redis-insight-hash.png",
+    "sha256": "39A4DB070485F8258CFD327099ECA7311E558F960210A9A8C3957197A97A39D8"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/redis-insight-ranking.png",
+    "sha256": "B6EF451D299075204714D16B1A03A1D3D73A83E0273834398BC858F730B33565"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/redis-insight-session-type.png",
+    "sha256": "C4DA2EF39DDF7DC7290E7F4023C0FB7BEF62CD5DFE107D05AAECB5B91ECD5AAA"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/redis-insight-state.txt",
+    "sha256": "C8F69E9995213D8A539DFD9A15DCC9566567128106C6A692738608D6A2628F30"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/redis-insight-types-state.txt",
+    "sha256": "E346581507DA2512E537FCC3AADFB6F9DF4C870CD03CFF710443D94DEFE834E2"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/20261022203530_82c03582/api-redis-evidence.json",
+    "sha256": "907453CEFFA464126749B04F9D0E6177E6DACDB7F455C81B6FF87F20FBB19D67"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/20261022203530_82c03582/environment.json",
+    "sha256": "4A74C9C829495A556CDCC0A3A4105F9AE5160A4F08EAB196BA45086769EA1806"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/benchmark/benchmark-raw.csv",
+    "sha256": "E8D33B4BEFC1F93D6B497E1778238CD905148E8F6FE9C284B31A450B69E3DDB7"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/benchmark/benchmark-summary.json",
+    "sha256": "D51C58082BA04C22FF35CEBF8846E6901DBB53C2E71026B6B11DD0EE8447A60D"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/benchmark/fixture-audit.json",
+    "sha256": "E85F5A8286D839AE05E28C0E200986C3EC2435B8165ADEE722D4E958ACC6C496"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/benchmark/manifest.json",
+    "sha256": "69CA88CA20719DC48938E077BE30A06C392F94F8420C242F5117A3D879EE2E38"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/benchmark/raw-summary-check.json",
+    "sha256": "88BA05AB06800E2B762CFA5CE1D954E297ED2B1220CF3383E2F2C166FAEA6F5F"
+  },
+  {
+    "path": "docs/dat/evidence/acceptance/benchmark/run-environment.json",
+    "sha256": "643C2DDDCE4C7E4BDBC44C44CC757C4BF2DA6540315D79E6B87202487152E998"
+  }
+]
