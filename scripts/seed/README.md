@@ -35,10 +35,22 @@ Nếu máy có MongoDB khác chiếm cổng 27017, xem cách đổi cổng trong
 - **Nội dung** sinh theo 10 thể loại (Văn học, Khoa học viễn tưởng, Trinh thám, Lịch sử, Thiếu nhi, Du ký, Khoa học, Công nghệ, Kinh tế, Tâm lý - Kỹ năng); không cần mạng. Đây là văn bản mẫu, không phải tác phẩm thật.
 - `coverUrl` trỏ tới `picsum.photos` (ảnh giữ chỗ, cần internet); frontend nên có ảnh dự phòng nếu tải lỗi.
 
-## Bàn giao cho Đạt (Redis)
+## Seed Redis (Đạt, phối hợp Sơn)
 
 `book_ids.json` liệt kê `bookId` của các sách seed (cùng `--seed` và `--count` mặc định thì ID luôn giống nhau). Script sẽ ghi đè file này mỗi lần chạy thật.
-Đạt đọc file này để seed **≥ 50 Hash** `progress:{userId}:{bookId}` và **ZSET `ranking:books` gồm 50 sách**.
+`seed_redis.py` đọc file này, kiểm tra từng sách có thật trong MongoDB rồi nạp:
+
+- 10 độc giả mẫu vào `users`: `reader01`…`reader10`, mật khẩu `reader123`, `_id = 5eed` + số thứ tự.
+- **60 Hash** `progress:{userId}:{bookId}` (`chapter, page, line, updatedAt`), `chapter` không vượt số chương thật.
+- **ZSET `ranking:books` gồm 50 sách** bằng `ZADD` (đặt điểm), nên chạy lại cho cùng kết quả.
+
+```bash
+python seed_books.py && python seed_redis.py   # Redis dùng REDIS_URL, mặc định redis://localhost:6379
+python seed_redis.py --reset                   # xóa tiến trình của user seed và điểm của sách seed rồi nạp lại
+python seed_redis.py --dry-run                 # chỉ sinh dữ liệu
+```
+
+Script chỉ đụng key của user seed và member là sách seed; không xóa phiên đăng nhập hay dữ liệu khác.
 
 ## Kiểm tra bằng MongoDB Compass
 
@@ -46,3 +58,7 @@ Kết nối `mongodb://admin:admin123@localhost:27017/?authSource=admin` → `di
 - Số document = 60 (hoặc số đã chọn).
 - Mở một sách: `chapters` là mảng 5–10 phần tử, mỗi phần tử có `chapterNo` (Int32), `title`, `content`, `sections`.
 - Tab *Validation* hiển thị JSON Schema; thử sửa `chapterNo` thành số thực sẽ bị từ chối.
+
+## Kiểm tra bằng Redis Insight
+
+http://localhost:5540 → add database host `redis`, port `6379` → Browser lọc `progress:*` (60 Hash) và `ranking:*` (ZSET 50 member). Lệnh mẫu cho Workbench: [ARCHITECTURE.md mục 4](../../docs/ARCHITECTURE.md#4-dữ-liệu-mẫu-dummy-data).
