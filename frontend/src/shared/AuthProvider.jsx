@@ -13,7 +13,10 @@ export function AuthProvider({ children }) {
     let active = true
     apiGet('/auth/me')
       .then((me) => { if (active) setUser(me) })
-      .catch(() => setToken(null)) // token hết hạn hoặc sai: bỏ đi
+      .catch((err) => {
+        // Chỉ bỏ token khi backend xác nhận hết hạn/sai; mất mạng thì giữ để thử lại lần sau
+        if (err.status === 401) setToken(null)
+      })
       .finally(() => { if (active) setLoading(false) })
     return () => { active = false }
   }, [])

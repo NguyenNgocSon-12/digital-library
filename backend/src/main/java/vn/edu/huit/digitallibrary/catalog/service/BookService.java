@@ -15,6 +15,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -32,6 +33,7 @@ import vn.edu.huit.digitallibrary.catalog.dto.ChapterRequest;
 import vn.edu.huit.digitallibrary.catalog.dto.ChapterSummary;
 import vn.edu.huit.digitallibrary.catalog.dto.CreateBookRequest;
 import vn.edu.huit.digitallibrary.catalog.dto.SectionRequest;
+import vn.edu.huit.digitallibrary.catalog.event.BookDeletedEvent;
 import vn.edu.huit.digitallibrary.catalog.model.Book;
 import vn.edu.huit.digitallibrary.catalog.model.Chapter;
 import vn.edu.huit.digitallibrary.catalog.model.Section;
@@ -49,9 +51,11 @@ public class BookService {
     public static final int MAX_BATCH_SIZE = 100;
 
     private final MongoTemplate mongoTemplate;
+    private final ApplicationEventPublisher events;
 
-    public BookService(MongoTemplate mongoTemplate) {
+    public BookService(MongoTemplate mongoTemplate, ApplicationEventPublisher events) {
         this.mongoTemplate = mongoTemplate;
+        this.events = events;
     }
 
     public PageResponse<BookSummary> list(int page, int size, String category, String keyword) {
@@ -142,6 +146,7 @@ public class BookService {
         if (mongoTemplate.remove(byId(requireObjectId(bookId)), Book.class).getDeletedCount() == 0) {
             throw bookNotFound(bookId);
         }
+        events.publishEvent(new BookDeletedEvent(new ObjectId(bookId).toHexString()));
     }
 
     public ChapterContent getChapter(String bookId, int chapterNo) {

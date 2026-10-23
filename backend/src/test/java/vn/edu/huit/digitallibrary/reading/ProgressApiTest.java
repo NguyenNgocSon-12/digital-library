@@ -1,6 +1,7 @@
 package vn.edu.huit.digitallibrary.reading;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -12,13 +13,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import vn.edu.huit.digitallibrary.catalog.event.BookDeletedEvent;
 import vn.edu.huit.digitallibrary.catalog.service.BookService;
 import vn.edu.huit.digitallibrary.identity.auth.CurrentUser;
+import vn.edu.huit.digitallibrary.identity.event.UserDeletedEvent;
 import vn.edu.huit.digitallibrary.identity.model.Role;
 import vn.edu.huit.digitallibrary.identity.service.UserService;
 import vn.edu.huit.digitallibrary.reading.controller.ProgressController;
@@ -29,6 +33,7 @@ import vn.edu.huit.digitallibrary.reading.service.ProgressService;
 @Import(ProgressService.class)
 class ProgressApiTest {
     @Autowired MockMvc mvc;
+    @Autowired ApplicationEventPublisher events;
     @MockitoBean ProgressRepository progress;
     @MockitoBean BookService books;
     @MockitoBean UserService users;
@@ -75,5 +80,13 @@ class ProgressApiTest {
 
     private void login() {
         given(users.authenticate("valid")).willReturn(Optional.of(new CurrentUser("u1", "reader", Role.USER)));
+    }
+
+    @Test
+    void deletingBookOrUserRemovesTheirProgress() {
+        events.publishEvent(new BookDeletedEvent("b00c00000000000000000001"));
+        events.publishEvent(new UserDeletedEvent("5eed00000000000000000001"));
+        verify(progress).deleteByBook("b00c00000000000000000001");
+        verify(progress).deleteByUser("5eed00000000000000000001");
     }
 }

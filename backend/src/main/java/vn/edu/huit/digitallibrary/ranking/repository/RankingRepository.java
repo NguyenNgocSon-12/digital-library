@@ -23,6 +23,10 @@ public class RankingRepository {
         return new RankingEntry(bookId, score);
     }
 
+    public void remove(String bookId) {
+        redis.opsForZSet().remove(KEY, bookId);
+    }
+
     public List<RankingEntry> top(int count) {
         var entries = redis.opsForZSet().reverseRangeWithScores(KEY, 0, count - 1L);
         if (entries == null) {

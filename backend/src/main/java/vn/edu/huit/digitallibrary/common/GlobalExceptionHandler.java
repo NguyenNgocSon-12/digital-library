@@ -1,6 +1,7 @@
 package vn.edu.huit.digitallibrary.common;
 
 import java.util.stream.Collectors;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateKeyException.class)
     public ResponseEntity<ApiError> handleDuplicate(DuplicateKeyException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiError("CONFLICT", "Dữ liệu đã tồn tại"));
+    }
+
+    /** MongoDB từ chối document sai $jsonSchema (code 121): lỗi dữ liệu đầu vào, không phải lỗi máy chủ. */
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ApiError> handleSchemaViolation(DataIntegrityViolationException ex) {
+        return badRequest("Dữ liệu không thỏa JSON Schema của MongoDB");
     }
 
     private ResponseEntity<ApiError> badRequest(String message) {
