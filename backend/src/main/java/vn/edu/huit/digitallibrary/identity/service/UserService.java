@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.Locale;
 import java.util.Optional;
 import org.bson.types.ObjectId;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import vn.edu.huit.digitallibrary.identity.dto.LoginResponse;
 import vn.edu.huit.digitallibrary.identity.dto.RegisterRequest;
 import vn.edu.huit.digitallibrary.identity.dto.UpdateUserRequest;
 import vn.edu.huit.digitallibrary.identity.dto.UserResponse;
+import vn.edu.huit.digitallibrary.identity.event.UserDeletedEvent;
 import vn.edu.huit.digitallibrary.identity.model.Role;
 import vn.edu.huit.digitallibrary.identity.model.User;
 import vn.edu.huit.digitallibrary.identity.repository.UserRepository;
@@ -24,11 +26,13 @@ public class UserService {
 
     private final UserRepository users;
     private final SessionService sessions;
+    private final ApplicationEventPublisher events;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public UserService(UserRepository users, SessionService sessions) {
+    public UserService(UserRepository users, SessionService sessions, ApplicationEventPublisher events) {
         this.users = users;
         this.sessions = sessions;
+        this.events = events;
     }
 
     public UserResponse register(RegisterRequest request) {
@@ -114,6 +118,7 @@ public class UserService {
         }
         users.delete(user);
         sessions.revokeAll(userId);
+        events.publishEvent(new UserDeletedEvent(user.getId()));
     }
 
     private User find(String userId) {

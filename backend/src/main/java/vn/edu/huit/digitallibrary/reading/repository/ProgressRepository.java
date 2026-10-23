@@ -1,8 +1,12 @@
 package vn.edu.huit.digitallibrary.reading.repository;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.springframework.data.redis.core.Cursor;
+import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;
 import vn.edu.huit.digitallibrary.reading.dto.ProgressResponse;
@@ -34,6 +38,24 @@ public class ProgressRepository {
                 Integer.parseInt((String) fields.get("page")),
                 Integer.parseInt((String) fields.get("line")),
                 Instant.parse((String) fields.get("updatedAt"))));
+    }
+
+    public long deleteByUser(String userId) {
+        return deleteMatching("progress:" + userId + ":*");
+    }
+
+    public long deleteByBook(String bookId) {
+        return deleteMatching("progress:*:" + bookId);
+    }
+
+    private long deleteMatching(String pattern) {
+        // SCAN thay vì KEYS để không chặn Redis khi có nhiều key
+        List<String> keys = new ArrayList<>();
+        try (Cursor<String> cursor = redis.scan(ScanOptions.scanOptions().match(pattern).count(500).build())) {
+            cursor.forEachRemaining(keys::add);
+        }
+        Long deleted = keys.isEmpty() ? null : redis.delete(keys);
+        return deleted == null ? 0 : deleted;
     }
 
     private String key(String userId, String bookId) {

@@ -13,10 +13,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import vn.edu.huit.digitallibrary.catalog.event.BookDeletedEvent;
 import vn.edu.huit.digitallibrary.catalog.service.BookService;
 import vn.edu.huit.digitallibrary.identity.service.UserService;
 import vn.edu.huit.digitallibrary.ranking.controller.RankingController;
@@ -28,6 +30,7 @@ import vn.edu.huit.digitallibrary.ranking.service.RankingService;
 @Import(RankingService.class)
 class RankingApiTest {
     @Autowired MockMvc mvc;
+    @Autowired ApplicationEventPublisher events;
     @MockitoBean RankingRepository ranking;
     @MockitoBean BookService books;
     @MockitoBean UserService users;
@@ -63,5 +66,11 @@ class RankingApiTest {
         mvc.perform(post("/api/books/book/read")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.score").value(2));
         verifyNoInteractions(users);
+    }
+
+    @Test
+    void deletedBookIsRemovedFromRanking() {
+        events.publishEvent(new BookDeletedEvent("b00c00000000000000000001"));
+        verify(ranking).remove("b00c00000000000000000001");
     }
 }
